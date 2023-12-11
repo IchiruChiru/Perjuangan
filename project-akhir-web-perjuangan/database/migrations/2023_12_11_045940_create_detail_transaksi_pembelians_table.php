@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('detail_transaksi_pembelians', function (Blueprint $table) {
             $table->id()->primaryKey();
             $table->foreignId('Barang_id')->constrained();
-            // $table->foreignId('Transaksi_id')->constrained()->nullable(false);
+            $table->foreignId('Transaksi_Pembelian_id')->constrained();
             $table->integer('jumlah_beli')->nullable(false);
             $table->timestamps();
         });

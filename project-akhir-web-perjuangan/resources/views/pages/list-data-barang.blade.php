@@ -1,5 +1,5 @@
 @extends('layout.master')
-
+<link rel="stylesheet" href="css/tambah-data.css">
 @section('title','list Data barang')
 @section('css','css/listdata.css')
 @section('content')
@@ -8,7 +8,7 @@
         <div class="recentOrders">
             <div class="cardHeader">
                 <h2>List Data Barang</h2>
-                <a href="{{ url('/tambahdatabarang') }}" class="btn">
+                <a class="btn" data-toggle="modal" data-target="#exampleModalCenter">
                     <i class="fa-solid fa-plus"></i>
                     Tambah Data Barang
                 </a>
@@ -108,5 +108,37 @@
                 </tbody>
             </table>
         </div>
+        
+        {{-- Modals Untuk Tambah Data Barang --}}       
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+            <div class="card-container">
+                <div class="container">
+                    <div class="log-card">
+                        <div class="modal-header">
+                            <p class="heading">Tambah Data Barang</p>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                        <div class="input-group modal-body">
+                            <p class="text">Nama Barang</p>
+                            <input class="input" type="text" placeholder="nama barang...">
+                            <p class="text">Merk Barang</p>
+                            <input class="input" type="text" placeholder="merk barang...">
+                            <p class="text">Harga Barang</p>
+                            <input class="input" type="text" placeholder="harga barang...">
+                            <p class="text">Stok Awal Barang</p>
+                            <input class="input" type="text" placeholder="Stok Awal barang...">
+                        </div>
+                        <button class="button btn-tambah">Tambah Data Barang</button>
+                    </div>
+                </div>
+        </div>
+      </div>
+    </div>
+  </div>
     <script src="../js/listdata.js"></script>
 @endsection

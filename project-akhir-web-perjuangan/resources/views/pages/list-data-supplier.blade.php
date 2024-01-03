@@ -1,5 +1,5 @@
 @extends('layout.master')
-
+<link rel="stylesheet" href="css/tambah-data.css">
 @section('title','list Data Supplier')
 @section('css','css/listdata.css')
 @section('content')
@@ -8,7 +8,7 @@
         <div class="recentOrders">
             <div class="cardHeader">
                 <h2>List Data Supplier</h2>
-                <a href="{{ url('/tambahdatabarang') }}" class="btn">
+                <a class="btn" data-toggle="modal" data-target="#exampleModalCenter">
                     <i class="fa-solid fa-plus"></i>
                     Tambah Data Supplier
                 </a>
@@ -99,5 +99,34 @@
                 </tbody>
             </table>
         </div>
+
+        <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+            <div class="card-container">
+                <div class="container">
+                    <div class="log-card">
+                        <div class="modal-header">
+                            <p class="heading">Tambah Data Supplier</p>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="input-group">
+                            <p class="text">Nama Supplier</p>
+                            <input class="input" type="text" placeholder="Nama Supplier...">
+                            <p class="text">Lokasi Supplier</p>
+                            <input class="input" type="text" placeholder="Lokasi Supplier...">
+                            <p class="text">Nomor Telpon Supplier</p>
+                            <input class="input" type="text" placeholder="cth : +6223923120">
+                        </div>
+                        <button class="btn-tambah">Tambah Data Supplier</button>
+                    </div>
+                </div>
+        </div>
+      </div>
+    </div>
+  </div>
     <script src="../js/listdata.js"></script>
 @endsection

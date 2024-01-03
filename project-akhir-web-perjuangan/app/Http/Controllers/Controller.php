@@ -10,8 +10,12 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
-    public function laporanKeuangan()
+    public function laporanPembelian()
     {
-        return view('pages.laporan-keuangan');
+        return view('pages.laporan-pembelian');
+    }
+    public function laporanPenjualan()
+    {
+        return view('pages.laporan-penjualan');
     }
 }

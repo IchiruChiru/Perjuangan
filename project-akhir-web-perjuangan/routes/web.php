@@ -21,7 +21,7 @@ use App\Http\Controllers\SupplierController;
 
 // Authentication and landing page
 Route::get('/', function() {
-    return view('pages.index');
+    return view('layout.master');
 });
 Route::get('/login',[AuthController::class,'login']);
 Route::get('/register',[AuthController::class,'register']);
@@ -32,10 +32,12 @@ Route::get('/dashboard', function(){
 });
 
 //Laporan keuangan
-Route::get('/laporankeuangan',[Controller::class, 'laporanKeuangan']);
+Route::get('/laporanPembelian',[Controller::class, 'laporanPembelian']);
+Route::get('/laporanPenjualan',[Controller::class, 'laporanPenjualan']);
 
 //KelolaBarang
-Route::get('/kelolabarang',[BarangController::class, 'kelolaBarang']);
+Route::get('/listdatabarang',[BarangController::class, 'index']);
+Route::get('/tambahdatabarang',[BarangController::class, 'create']);
 
 //Transaksi
 Route::get('/transaksipembelian',[TransaksiPembelianController::class, 'index']);
@@ -43,4 +45,5 @@ Route::get('/transaksipenjualan',[TransaksiPenjualanController::class, 'index'])
 
 
 //Supplier
-Route::get('/supplier',[SupplierController::class, 'index']);
+Route::get('/listdatasupplier',[SupplierController::class, 'index']);
+Route::get('/tambahdatasupplier',[SupplierController::class, 'create']);

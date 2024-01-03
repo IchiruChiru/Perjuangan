@@ -8,6 +8,10 @@ class SupplierController extends Controller
 {
     public function index()
     {
-        return view('pages.supplier');
+        return view('pages.list-data-supplier');
+    }
+    public function create()
+    {
+        return view('pages.tambah-data-supplier');
     }
 }

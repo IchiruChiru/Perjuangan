@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('css/master.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <title>@yield('title', 'Judul Halaman')</title>
+    <link rel="stylesheet" href="@yield('css','path-css')">
 </head>
 
 <body>
@@ -130,7 +131,6 @@
             <main class="content px-3 py-2">
                 <div class="container-fluid">
                     <div class="mb-3">
-                        <h3>@yield('title', 'Judul Halaman')</h3>
                         @yield('content')
                     </div>
                 </div>

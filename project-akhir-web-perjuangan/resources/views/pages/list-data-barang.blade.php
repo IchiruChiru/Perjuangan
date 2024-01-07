@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="details">
-        <div class="recentOrders">
+        <div class="format-table">
             <div class="cardHeader">
                 <h2>List Data Barang</h2>
                 <a class="btn" data-toggle="modal" data-target="#modal-inputbarang">

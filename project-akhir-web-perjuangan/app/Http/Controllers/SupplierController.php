@@ -9,7 +9,8 @@ class SupplierController extends Controller
 {
     public function index()
     {
-        return view('pages.list-data-supplier');
+        $suppliers = Supplier::all();
+        return view('pages.list-data-supplier',['suppliers' => $suppliers]);
     }
     public function create()
     {
@@ -39,4 +40,28 @@ class SupplierController extends Controller
             return redirect('/tambahdatasupplier');
         }
     }
+
+    public function delete($id)
+    {
+        $supplier = Supplier::find($id);
+        $supplier->delete();
+        return redirect('/listdatasupplier');
     }
+
+    public function update($id, Request $request)
+    {
+        $this->validate($request,[
+            'nama_supplier' => 'required',
+            'lokasi_supplier' => 'required',
+            'no_telp' => 'required',
+        ]);
+        
+        $supplier = Supplier::find($id);
+        $supplier->nama_supplier = $request->nama_supplier;
+        $supplier->lokasi_supplier = $request->lokasi_supplier;
+        $supplier->no_telp = $request->no_telp;
+        $supplier->save();
+        return redirect('/listdatasupplier');
+    }
+    }
+

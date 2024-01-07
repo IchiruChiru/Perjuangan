@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id()->unique();
             $table->String('nama_supplier', 50)->nullable(false);
             $table->String('lokasi_supplier', 50)->nullable(false);
-            $table->integer('no_telp', false)->nullable(false);
+            $table->String('no_telp', false)->nullable(false);
             $table->timestamps();
         });
 

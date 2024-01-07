@@ -49,3 +49,5 @@ Route::get('/transaksipenjualan',[TransaksiPenjualanController::class, 'index'])
 Route::get('/listdatasupplier',[SupplierController::class, 'index']);
 Route::get('/tambahdatasupplier',[SupplierController::class, 'create']);
 Route::post('/datasupplier/store',[SupplierController::class, 'store']);
+Route::get('/datasupplier/hapus/{id}',[SupplierController::class, 'delete']);
+Route::post('/datasupplier/update/{id}',[SupplierController::class, 'update']);

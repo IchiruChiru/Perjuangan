@@ -133,7 +133,9 @@
                                 <input class="input" type="text" placeholder="harga barang..." name="harga_barang">
                                 <p class="text">Stok Awal Barang</p>
                                 <input class="input" type="text" placeholder="Stok Awal barang..." name="stok">
-                                <button class="btn-tambah" type="submit">Tambah Data Barang</button>
+                                <button class="btn-tambah" type="submit">
+                                    Tambah Data Barang
+                                </button>
                         </form>
                     </div>
                 </div>

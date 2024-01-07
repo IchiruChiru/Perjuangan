@@ -11,4 +11,5 @@ class Supplier extends Model
     public function transaksi_pembelians(){
         return $this->hasMany('App\Models\TransaksiPembelian');
     }
+    protected $fillable = ['nama_supplier','lokasi_supplier','no_telp'];
 }

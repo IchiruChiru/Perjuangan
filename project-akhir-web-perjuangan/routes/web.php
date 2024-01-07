@@ -36,10 +36,10 @@ Route::get('/laporanPembelian',[Controller::class, 'laporanPembelian']);
 Route::get('/laporanPenjualan',[Controller::class, 'laporanPenjualan']);
 
 //KelolaBarang
-
 Route::get('/listdatabarang',[BarangController::class, 'index']);
 Route::get('/tambahdatabarang',[BarangController::class, 'create']);
 Route::post('/databarang/store',[BarangController::class,'store']);
+
 //Transaksi
 Route::get('/transaksipembelian',[TransaksiPembelianController::class, 'index']);
 Route::get('/transaksipenjualan',[TransaksiPenjualanController::class, 'index']);
@@ -48,3 +48,4 @@ Route::get('/transaksipenjualan',[TransaksiPenjualanController::class, 'index'])
 //Supplier
 Route::get('/listdatasupplier',[SupplierController::class, 'index']);
 Route::get('/tambahdatasupplier',[SupplierController::class, 'create']);
+Route::post('/datasupplier/store',[SupplierController::class, 'store']);

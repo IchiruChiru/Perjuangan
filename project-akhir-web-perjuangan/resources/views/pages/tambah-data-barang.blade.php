@@ -19,7 +19,9 @@
                             <p class="text">Stok Awal Barang</p>
                             <input class="input" type="text" placeholder="Stok Awal barang..." name="stok">
                     </div>
-                    <button class="btn-tambah" type="submit">Tambah Data Barang</button>
+                    <button class="btn-tambah" type="submit">
+                        <i class="fa-solid fa-check"></i>
+                        Tambah Data Barang</button>
                 </form>
             </div>
         </div>

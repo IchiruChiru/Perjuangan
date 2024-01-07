@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 
+
 class SupplierController extends Controller
 {
     public function index()
@@ -34,10 +35,10 @@ class SupplierController extends Controller
         $current_route = $request->current_route;
         if($current_route == '/listdatasupplier')
         {
-            return redirect('/listdatasupplier');
+            return back()->with('pesan','Data Berhasil Disimpan!!');
         }else
         {
-            return redirect('/tambahdatasupplier');
+            return back()->with('pesan','Data Berhasil Disimpan!!');
         }
     }
 
@@ -45,7 +46,8 @@ class SupplierController extends Controller
     {
         $supplier = Supplier::find($id);
         $supplier->delete();
-        return redirect('/listdatasupplier');
+        return back();
+        
     }
 
     public function update($id, Request $request)
@@ -61,7 +63,7 @@ class SupplierController extends Controller
         $supplier->lokasi_supplier = $request->lokasi_supplier;
         $supplier->no_telp = $request->no_telp;
         $supplier->save();
-        return redirect('/listdatasupplier');
+        return back()->with('pesan','Data Berhasil Disimpan!!');
     }
     }
 

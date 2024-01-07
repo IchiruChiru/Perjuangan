@@ -37,7 +37,7 @@
                              Edit
                             </button>
                         </td>
-                        <td><button class="button-hapus" onclick="window.location.href='/datasupplier/hapus/{{ $supplier->id }}'"><i class="fa-solid fa-trash"></i> Hapus</button></td>
+                        <td><button class="button-hapus" id="hapus" onclick="konfirmasi(event, {{ $supplier->id }})"><i class="fa-solid fa-trash"></i> Hapus</button></td>
                         <?php $no++; ?>
 
                         {{-- Modals setelah Button Edit di klik --}}
@@ -101,6 +101,38 @@
                 </div>
             </div>
         </div>
+        
+        @if(Session::has('pesan'))
+        <script>
+                swal("Berhasil!!", "{{ Session::get('pesan') }}", "success");
+        </script>
+         @endif
 
+         <script type="text/javascript">
+            function konfirmasi(event,supplier_id)
+            {
+                event.preventDefault();
+
+                swal({
+                title: "Yakin ingin Menghapus?",
+                text: "setelah ditekan data tidak bisa dipulihkan!!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    window.location.href = '/datasupplier/hapus/' + supplier_id;
+                    swal("Berhasil Menghapus!!!", {
+                    icon: "success",
+                    });
+                    
+                } else {
+                    
+                    swal("Data batal dihapus!!!");
+                }
+                });
+            }        
+         </script>
     <script src="../js/listdata.js"></script>
 @endsection

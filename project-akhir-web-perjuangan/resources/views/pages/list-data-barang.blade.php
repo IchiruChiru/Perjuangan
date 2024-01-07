@@ -107,7 +107,7 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
+    </div>
         
         {{-- Modals Untuk Tambah Data Barang --}}       
 <!-- Modal -->

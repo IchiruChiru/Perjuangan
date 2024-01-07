@@ -123,10 +123,6 @@
                 .then((willDelete) => {
                 if (willDelete) {
                     window.location.href = '/datasupplier/hapus/' + supplier_id;
-                    swal("Berhasil Menghapus!!!", {
-                    icon: "success",
-                    });
-                    
                 } else {
                     
                     swal("Data batal dihapus!!!");

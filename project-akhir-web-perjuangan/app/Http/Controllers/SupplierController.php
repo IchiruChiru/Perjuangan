@@ -46,7 +46,7 @@ class SupplierController extends Controller
     {
         $supplier = Supplier::find($id);
         $supplier->delete();
-        return back();
+        return back()->with('pesan','Data Berhasil Dihapus!!');
         
     }
 

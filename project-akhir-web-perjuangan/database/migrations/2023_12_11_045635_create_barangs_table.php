@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('merk_barang',50)->nullable(false);
             $table->bigInteger('harga_barang')->nullable(false);
             $table->integer('stok')->nullable(false);
+            $table->integer('peringatan_stok')->nullable(false);
             $table->timestamps();
         });
     }

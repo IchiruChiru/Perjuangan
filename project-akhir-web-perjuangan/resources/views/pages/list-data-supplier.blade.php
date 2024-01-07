@@ -14,6 +14,7 @@
                 </a>
             </div>
 
+            {{-- Tampil Data --}}
             <table>
                 <thead>
                     <tr>
@@ -27,53 +28,54 @@
                 <tbody>
                     <?php $no = 1; ?>
                     @foreach ($suppliers as $supplier)
-                    <tr>
-                        <td>{{ $no }}</td>
-                        <td>{{ $supplier->nama_supplier }}</td>
-                        <td>{{ $supplier->lokasi_supplier }}</td>
-                        <td>{{ $supplier->no_telp }}</td>
-                        <td><button class="button" data-toggle="modal" data-target="#modal-edit{{ $supplier->id }}">
-                            <i class="fa-solid fa-pen-to-square"  ></i>
-                             Edit
-                            </button>
-                        </td>
-                        <td><button class="button-hapus" id="hapus" onclick="konfirmasi(event, {{ $supplier->id }})"><i class="fa-solid fa-trash"></i> Hapus</button></td>
-                        <?php $no++; ?>
+                        <tr>
+                            <td>{{ $no }}</td>
+                            <td>{{ $supplier->nama_supplier }}</td>
+                            <td>{{ $supplier->lokasi_supplier }}</td>
+                            <td>{{ $supplier->no_telp }}</td>
+                            <td><button class="button" data-toggle="modal" data-target="#modal-edit{{ $supplier->id }}">
+                                <i class="fa-solid fa-pen-to-square"  ></i>
+                                Edit
+                                </button>
+                            </td>
+                            <td><button class="button-hapus" id="hapus" onclick="konfirmasi(event, {{ $supplier->id }})"><i class="fa-solid fa-trash"></i> Hapus</button></td>
+                            <?php $no++; ?>
 
-                        {{-- Modals setelah Button Edit di klik --}}
-                        <div class="modal fade" id="modal-edit{{ $supplier->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <p class="heading">Edit Data Supplier</p>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="input-group modal-body">
-                                        <form action="/datasupplier/update/{{$supplier->id}}" method="POST">
-                                            {{ csrf_field() }}
-                                            <div class="input-group">
-                                                <input type="hidden" name="current_route" value="/listdatasupplier">
-                                                <p class="text" >Nama Supplier</p>
-                                                <input class="input" type="text" value="{{ $supplier->nama_supplier }}"name="nama_supplier">
-                                                <p class="text">Lokasi Supplier</p>
-                                                <input class="input" type="text" value="{{ $supplier->lokasi_supplier }}" name="lokasi_supplier">
-                                                <p class="text">Nomor Telpon Supplier</p>
-                                                <input class="input" type="text" value="{{ $supplier->no_telp }}" name="no_telp">
-                                            </div>
-                                            <button class="btn-tambah" type="submit">Simpan</button>
-                                        </form>
+                            {{-- Modals setelah Button Edit di klik --}}
+                            <div class="modal fade" id="modal-edit{{ $supplier->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <p class="heading">Edit Data Supplier</p>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="input-group modal-body">
+                                            <form action="/datasupplier/update/{{$supplier->id}}" method="POST">
+                                                {{ csrf_field() }}
+                                                <div class="input-group">
+                                                    <input type="hidden" name="current_route" value="/listdatasupplier">
+                                                    <p class="text" >Nama Supplier</p>
+                                                    <input class="input" type="text" value="{{ $supplier->nama_supplier }}"name="nama_supplier">
+                                                    <p class="text">Lokasi Supplier</p>
+                                                    <input class="input" type="text" value="{{ $supplier->lokasi_supplier }}" name="lokasi_supplier">
+                                                    <p class="text">Nomor Telpon Supplier</p>
+                                                    <input class="input" type="text" value="{{ $supplier->no_telp }}" name="no_telp">
+                                                </div>
+                                                <button class="btn-tambah" type="submit">Simpan</button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </tr>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
 
+        {{-- MODAL TAMBAH DATA SUPPLIER --}}
         <div class="modal fade" id="modal-inputsupplier" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">

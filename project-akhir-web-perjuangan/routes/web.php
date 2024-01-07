@@ -39,6 +39,8 @@ Route::get('/laporanPenjualan',[Controller::class, 'laporanPenjualan']);
 Route::get('/listdatabarang',[BarangController::class, 'index']);
 Route::get('/tambahdatabarang',[BarangController::class, 'create']);
 Route::post('/databarang/store',[BarangController::class,'store']);
+Route::post('/databarang/update/{id}',[BarangController::class,'update']);
+Route::get('/databarang/hapus/{id}',[BarangController::class,'delete']);
 
 //Transaksi
 Route::get('/transaksipembelian',[TransaksiPembelianController::class, 'index']);

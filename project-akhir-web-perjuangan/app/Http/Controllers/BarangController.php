@@ -9,7 +9,8 @@ class BarangController extends Controller
 {
     public function index()
     {
-        return view('pages.list-data-barang');
+        $barangs = Barang::all();
+        return view('pages.list-data-barang',['barangs' => $barangs]);
     }
     public function create()
     {
@@ -23,6 +24,7 @@ class BarangController extends Controller
             'merk_barang' => 'required',
             'harga_barang' => 'required',
             'stok' => 'required',
+            'peringatan_stok' => 'required',
         ]);
 
         Barang::create([
@@ -30,6 +32,7 @@ class BarangController extends Controller
             'merk_barang' => $request->merk_barang,
             'harga_barang' => $request->harga_barang,
             'stok' => $request->stok,
+            'peringatan_stok' => $request->peringatan_stok,
         ]);
 
         $current_route = $request->current_route;
@@ -40,5 +43,25 @@ class BarangController extends Controller
         {
             return redirect('/tambahdatabarang');
         }
+    }
+
+    public function update($id ,Request $request)
+    {
+        $barang = Barang::find($id);
+        $barang->nama_barang = $request->nama_barang;
+        $barang->merk_barang = $request->merk_barang;
+        $barang->harga_barang = $request->harga_barang;
+        $barang->stok = $request->stok;
+        $barang->peringatan_stok = $request->peringatan_stok;
+        $barang->save();
+
+        return back()->with('pesan','Data Berhasil Disimpan!!');
+    }
+
+    public function delete($id)
+    {
+        $barang = Barang::find($id);
+        $barang->delete();
+        return back()->with('pesan','Data Berhasil Dihapus!!');
     }
 }

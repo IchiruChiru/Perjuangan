@@ -27,84 +27,64 @@
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Star Refrigerator</td>
-                        <td>Rp.12.000.000</td>
-                        <td>430</td>
-                        <td><span class="status tersedia">Tersedia</span></td>
-                        <td><button class="button"><i class="fa-solid fa-pen-to-square"></i> Edit</button></td>
-                        <td><button class="button-hapus"><i class="fa-solid fa-trash"></i> Hapus</button></td>
-                    </tr>
+                    @php
+                        $no = 1;
+                    @endphp
+                    @foreach ($barangs as $barang)
+                        <tr>
+                            <td>{{ $no }}</td>
+                            <td>{{ $barang->nama_barang }}</td>
+                            <td>{{ $barang->merk_barang }}</td>
+                            <td>{{ "Rp" . $barang->harga_barang }}</td>
+                            <td>{{ $barang->stok }}</td>
+                            @if ($barang->stok < $barang->peringatan_stok)
+                                <td><span class="status hampirhabis">Tersedia</span></td>
+                            @elseif ($barang->stok == 0) 
+                                <td><span class="status habis">Tersedia</span></td>
+                            @else
+                                <td><span class="status tersedia">Tersedia</span></td>
+                            @endif
+                            <td><button class="button"  data-toggle="modal" data-target="#modal-edit{{ $barang->id }}"><i class="fa-solid fa-pen-to-square"></i> Edit</button></td>
+                            <td><button class="button-hapus" onclick="konfirmasi(event, {{ $barang->id }})"><i class="fa-solid fa-trash"></i> Hapus</button></td>
 
-                    <tr><td>2</td>
-                        <td >Dell Laptop</td>
-                        <td>11.000.000</td>
-                        <td>320</td>
-                        <td><span class="status hampirhabis">Hampir Habis</span></td>
-                        <td><button class="button"><i class="fa-solid fa-pen-to-square"></i> Edit</button></td>
-                        <td><button class="button-hapus"><i class="fa-solid fa-trash"></i> Hapus</button></td>
-                    </tr>
+                            {{-- Modals setelah Button Edit di klik --}}
+                            <div class="modal fade" id="modal-edit{{ $barang->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <p class="heading">Edit Data Barang</p>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="input-group modal-body">
+                                            <form action="/databarang/update/{{ $barang->id }}" method="post">
+                                                {{ csrf_field() }}
+                                                    <input type="hidden" name="current_route" value="/listdatabarang">
+                                                    <p class="text">Nama Barang</p>
+                                                    <input class="input" type="text" value="{{ $barang->nama_barang }}" name="nama_barang">
+                                                    <p class="text">Merk Barang</p>
+                                                    <input class="input" type="text" value="{{ $barang->merk_barang }}" name="merk_barang">
+                                                    <p class="text">Harga Barang</p>
+                                                    <input class="input" type="text" value="{{ $barang->harga_barang }}" name="harga_barang">
+                                                    <p class="text">Stok Awal Barang</p>
+                                                    <input class="input" type="text" value="{{ $barang->stok }}"name="stok">
+                                                    <p class="text">Peringatan Stok Barang</p>
+                                                    <input class="input" type="text" value="{{ $barang->peringatan_stok }}" name="peringatan_stok">
+                                                    <button class="btn-tambah" type="submit">
+                                                        Tambah Data Barang
+                                                    </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </tr>
+                        @php
+                            $no++;
+                        @endphp
 
-                    <tr>
-                        <td>3</td>
-                        <td>Apple Watch</td>
-                        <td>Rp.500.000</td>
-                        <td>190</td>
-                        <td><span class="status habis">Habis</span></td>
-                        <td><button class="button"><i class="fa-solid fa-pen-to-square"></i> Edit</button></td>
-                        <td><button class="button-hapus"><i class="fa-solid fa-trash"></i> Hapus</button></td>
-                    </tr>
 
-                    <tr>
-                        <td>4</td>
-                        <td>Addidas Shoes</td>
-                        <td>Rp.620.000</td>
-                        <td>160</td>
-                        <td><span class="status hampirhabis">Hampir Habis</span></td>
-                        <td><button class="button"><i class="fa-solid fa-pen-to-square"></i> Edit</button></td>
-                        <td><button class="button-hapus"><i class="fa-solid fa-trash"></i> Hapus</button></td>
-                    </tr>
-
-                    <tr>
-                        <td>5</td>
-                        <td>Star Refrigerator</td>
-                        <td>Rp.12.000.000</td>
-                        <td>140</td>
-                        <td><span class="status tersedia">Tersedia</span></td>
-                        <td><button class="button"><i class="fa-solid fa-pen-to-square"></i> Edit</button></td>
-                        <td><button class="button-hapus"><i class="fa-solid fa-trash"></i> Hapus</button></td>
-                    </tr>
-
-                    <tr>
-                        <td>6</td>
-                        <td>Dell Laptop</td>
-                        <td>Rp.11.000.000</td>
-                        <td>120</td>
-                        <td><span class="status hampirhabis">Hampir Habis</span></td>
-                        <td><button class="button"><i class="fa-solid fa-pen-to-square"></i> Edit</button></td>
-                        <td><button class="button-hapus"><i class="fa-solid fa-trash"></i> Hapus</button></td>
-                    </tr>
-
-                    <tr>
-                        <td>7</td>
-                        <td>Apple Watch</td>
-                        <td>Rp.500.000</td>
-                        <td>100</td>
-                        <td><span class="status habis">Habis</span></td>
-                        <td><button class="button"><i class="fa-solid fa-pen-to-square"></i> Edit</button></td>
-                        <td><button class="button-hapus"><i class="fa-solid fa-trash"></i> Hapus</button></td>
-                    </tr>
-
-                    <tr>
-                        <td>8</td>
-                        <td>Addidas Shoes</td>
-                        <td>Rp.620.000</td>
-                        <td>200</td>
-                        <td><span class="status habis">Habis</span></td>
-                        <td><button class="button"><i class="fa-solid fa-pen-to-square"></i> Edit</button></td>
-                        <td><button class="button-hapus"><i class="fa-solid fa-trash"></i> Hapus</button></td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
     </div>
@@ -133,6 +113,8 @@
                                 <input class="input" type="text" placeholder="harga barang..." name="harga_barang">
                                 <p class="text">Stok Awal Barang</p>
                                 <input class="input" type="text" placeholder="Stok Awal barang..." name="stok">
+                                <p class="text">Peringatan Stok Barang</p>
+                                <input class="input" type="text" placeholder="Peringatan Stok barang..." name="peringatan_stok">
                                 <button class="btn-tambah" type="submit">
                                     Tambah Data Barang
                                 </button>
@@ -142,5 +124,34 @@
             </div>
         </div>
     </div>
+
+    @if(Session::has('pesan'))
+    <script>
+            swal("Berhasil!!", "{{ Session::get('pesan') }}", "success");
+    </script>
+     @endif
+
+    <script type="text/javascript">
+        function konfirmasi(event,barang_id)
+        {
+            event.preventDefault();
+
+            swal({
+            title: "Yakin ingin Menghapus?",
+            text: "setelah ditekan data tidak bisa dipulihkan!!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                window.location.href = '/databarang/hapus/' + barang_id;
+            } else {
+                
+                swal("Data batal dihapus!!!");
+            }
+            });
+        }        
+     </script>
     <script src="../js/listdata.js"></script>
 @endsection

@@ -19,6 +19,7 @@
                     <tr>
                         <td>No</td>
                         <td>Nama Barang</td>
+                        <td>Merk Barang</td>
                         <td>Harga</td>
                         <td>Stok</td>
                         <td>Ketersediaan</td>
@@ -37,10 +38,10 @@
                             <td>{{ $barang->merk_barang }}</td>
                             <td>{{ "Rp" . $barang->harga_barang }}</td>
                             <td>{{ $barang->stok }}</td>
-                            @if ($barang->stok < $barang->peringatan_stok)
-                                <td><span class="status hampirhabis">Tersedia</span></td>
-                            @elseif ($barang->stok == 0) 
-                                <td><span class="status habis">Tersedia</span></td>
+                            @if ($barang->stok == 0) 
+                            <td><span class="status habis">Habis</span></td>
+                            @elseif ($barang->stok < $barang->peringatan_stok)
+                                <td><span class="status hampirhabis">Hampir Habis</span></td>
                             @else
                                 <td><span class="status tersedia">Tersedia</span></td>
                             @endif
@@ -67,7 +68,7 @@
                                                     <input class="input" type="text" value="{{ $barang->merk_barang }}" name="merk_barang">
                                                     <p class="text">Harga Barang</p>
                                                     <input class="input" type="text" value="{{ $barang->harga_barang }}" name="harga_barang">
-                                                    <p class="text">Stok Awal Barang</p>
+                                                    <p class="text">Ubah Stok Barang</p>
                                                     <input class="input" type="text" value="{{ $barang->stok }}"name="stok">
                                                     <p class="text">Peringatan Stok Barang</p>
                                                     <input class="input" type="text" value="{{ $barang->peringatan_stok }}" name="peringatan_stok">

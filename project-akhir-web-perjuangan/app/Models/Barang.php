@@ -18,4 +18,6 @@ class Barang extends Model
     {
         return $this->BelongsTo('App\Models\DetailTransaksiPenjualan');
     }
+
+    protected $fillable = ['nama_barang','merk_barang','harga_barang','stok'];
 }

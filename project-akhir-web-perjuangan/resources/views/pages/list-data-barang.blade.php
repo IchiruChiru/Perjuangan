@@ -8,7 +8,7 @@
         <div class="recentOrders">
             <div class="cardHeader">
                 <h2>List Data Barang</h2>
-                <a class="btn" data-toggle="modal" data-target="#exampleModalCenter">
+                <a class="btn" data-toggle="modal" data-target="#modal-inputbarang">
                     <i class="fa-solid fa-plus"></i>
                     Tambah Data Barang
                 </a>
@@ -110,35 +110,35 @@
         </div>
         
         {{-- Modals Untuk Tambah Data Barang --}}       
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-            <div class="card-container">
-                <div class="container">
-                    <div class="log-card">
-                        <div class="modal-header">
-                            <p class="heading">Tambah Data Barang</p>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                        <div class="input-group modal-body">
-                            <p class="text">Nama Barang</p>
-                            <input class="input" type="text" placeholder="nama barang...">
-                            <p class="text">Merk Barang</p>
-                            <input class="input" type="text" placeholder="merk barang...">
-                            <p class="text">Harga Barang</p>
-                            <input class="input" type="text" placeholder="harga barang...">
-                            <p class="text">Stok Awal Barang</p>
-                            <input class="input" type="text" placeholder="Stok Awal barang...">
-                        </div>
-                        <button class="button btn-tambah">Tambah Data Barang</button>
+<!-- Modal -->
+
+        <div class="modal fade" id="modal-inputbarang" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <p class="heading">Tambah Data Barang</p>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="input-group modal-body">
+                        <form action="/databarang/store" method="post">
+                            {{ csrf_field() }}
+                                <input type="hidden" name="current_route" value="/listdatabarang">
+                                <p class="text">Nama Barang</p>
+                                <input class="input" type="text" placeholder="nama barang..." name="nama_barang">
+                                <p class="text">Merk Barang</p>
+                                <input class="input" type="text" placeholder="merk barang..." name="merk_barang">
+                                <p class="text">Harga Barang</p>
+                                <input class="input" type="text" placeholder="harga barang..." name="harga_barang">
+                                <p class="text">Stok Awal Barang</p>
+                                <input class="input" type="text" placeholder="Stok Awal barang..." name="stok">
+                                <button class="btn-tambah" type="submit">Tambah Data Barang</button>
+                        </form>
                     </div>
                 </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
     <script src="../js/listdata.js"></script>
 @endsection

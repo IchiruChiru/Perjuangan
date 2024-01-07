@@ -23,4 +23,11 @@
         </div>
     </div>
 
+     {{-- Memanggil view alert --}}
+     @include('layout.alert',
+     [   'is_session_pesan_exist'=>Session::has('pesan'),
+         'session_pesan'=>Session::get('pesan'),
+         'namaTable'=>'supplier'
+     ]),
+
 @endsection

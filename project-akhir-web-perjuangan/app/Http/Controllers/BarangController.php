@@ -10,11 +10,11 @@ class BarangController extends Controller
     public function index()
     {
         $barangs = Barang::all();
-        return view('pages.list-data-barang',['barangs' => $barangs]);
+        return view('pages.pages_barang.list-data-barang',['barangs' => $barangs]);
     }
     public function create()
     {
-        return view('pages.tambah-data-barang');
+        return view('pages.pages_barang.tambah-data-barang');
     }
 
     public function store(Request $request)
@@ -34,15 +34,7 @@ class BarangController extends Controller
             'stok' => $request->stok,
             'peringatan_stok' => $request->peringatan_stok,
         ]);
-
-        $current_route = $request->current_route;
-        if($current_route == '/listdatabarang')
-        {
-            return redirect('/listdatabarang');
-        }else
-        {
-            return redirect('/tambahdatabarang');
-        }
+        return back()->with('pesan','Data Berhasil Disimpan!!');   
     }
 
     public function update($id ,Request $request)

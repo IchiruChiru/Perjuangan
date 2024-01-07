@@ -11,11 +11,11 @@ class SupplierController extends Controller
     public function index()
     {
         $suppliers = Supplier::all();
-        return view('pages.list-data-supplier',['suppliers' => $suppliers]);
+        return view('pages.pages_supplier.list-data-supplier',['suppliers' => $suppliers]);
     }
     public function create()
     {
-        return view('pages.tambah-data-supplier');
+        return view('pages.pages_supplier.tambah-data-supplier');
     }
 
     public function store(Request $request)
@@ -32,14 +32,8 @@ class SupplierController extends Controller
             'no_telp' => $request->no_telp,
         ]);
 
-        $current_route = $request->current_route;
-        if($current_route == '/listdatasupplier')
-        {
-            return back()->with('pesan','Data Berhasil Disimpan!!');
-        }else
-        {
-            return back()->with('pesan','Data Berhasil Disimpan!!');
-        }
+        return back()->with('pesan','Data Berhasil Disimpan!!');
+        
     }
 
     public function delete($id)

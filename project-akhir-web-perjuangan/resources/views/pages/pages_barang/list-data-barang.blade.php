@@ -125,34 +125,13 @@
             </div>
         </div>
     </div>
-
-    @if(Session::has('pesan'))
-    <script>
-            swal("Berhasil!!", "{{ Session::get('pesan') }}", "success");
-    </script>
-     @endif
-
-    <script type="text/javascript">
-        function konfirmasi(event,barang_id)
-        {
-            event.preventDefault();
-
-            swal({
-            title: "Yakin ingin Menghapus?",
-            text: "setelah ditekan data tidak bisa dipulihkan!!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-            })
-            .then((willDelete) => {
-            if (willDelete) {
-                window.location.href = '/databarang/hapus/' + barang_id;
-            } else {
-                
-                swal("Data batal dihapus!!!");
-            }
-            });
-        }        
-     </script>
+    
+    {{-- Memanggil view alert --}}
+    @include('layout.alert',
+        [   'is_session_pesan_exist'=>Session::has('pesan'),
+            'session_pesan'=>Session::get('pesan'),
+            'id' => $barang->id,
+            'namaTable'=>'barang'
+        ]),
     <script src="../js/listdata.js"></script>
 @endsection

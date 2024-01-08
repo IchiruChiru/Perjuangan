@@ -37,7 +37,7 @@ class KasirSeeder extends Seeder
             // untuk mengacak urutan data
             shuffle($data);
 
-            // Masukkan data ke dalam tabel Barang
+            // Masukkan data ke dalam tabel Kasir
             Kasir::insert($data);
     }
 }

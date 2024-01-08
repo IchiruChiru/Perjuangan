@@ -3,7 +3,7 @@
 @section('css','css/tambah-data.css')
 @section('content')
     <div class="card-container">
-        <div class="container">
+       
             <div class="log-card">
                 <p class="heading">Tambah Data Barang</p>
                 <form action="/databarang/store" method="post">

@@ -1,5 +1,5 @@
 <?php
-
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Controller ;
@@ -7,6 +7,8 @@ use App\Http\Controllers\TransaksiPenjualanController;
 use App\Http\Controllers\TransaksiPembelianController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,31 +57,50 @@ Route::get('/datasupplier/hapus/{id}',[SupplierController::class, 'delete']);
 Route::post('/datasupplier/update/{id}',[SupplierController::class, 'update']);
 
 // Auth
-Route::group(['namespace' => 'App\Http\Controllers'], function()
-{   
+// Route::group(['namespace' => 'App\Http\Controllers'], function()
+// {
     /**
      * Home Routes
      */
     // Route::get('/', 'HomeController@index')->name('home.index');
-    Route::get('/', function() {
-        return view('pages.pages_lainnya.index');
-    });
-    Route::group(['middleware' => ['guest']], function() {
+    // Route::get('/', function() {
+    //     return view('pages.pages_lainnya.index');
+    // });
+    // Route::group(['middleware' => ['guest']], function() {
         /**
          * Register Routes
          */
-        Route::get('/register', 'RegisterController@show')->name('register.show');
-        Route::post('/register', 'RegisterController@register')->name('register.perform');
+
+        // Route::get('/register', 'RegisterController@show')->name('register.show');
+        // Route::post('/register', 'RegisterController@register')->name('register.perform');
+
+        Route::get('register', [AuthController::class,'register'])->name('register');
+        Route::post('proses_register',[AuthController::class,'proses_register'])->name('proses_register');
         /**
          * Login Routes
          */
-        Route::get('/login', 'LoginController@show')->name('login.show');
-        Route::post('/login', 'LoginController@login')->name('login.perform');
-    });
-    Route::group(['middleware' => ['auth']], function() {
+        // Route::get('/login', 'LoginController@show')->name('login.show');
+        // Route::post('/login', 'LoginController@login')->name('login.perform');
+
+        Route::get('login', [AuthController::class,'index'])->name('login');
+        Route::post('proses_login', [AuthController::class,'proses_login'])->name('proses_login');
+
+        Route::get('logout', [AuthController::class,'logout'])->name('logout');
+    // });
+    // Route::group(['middleware' => ['auth']], function() {
         /**
          * Logout Routes
          */
-        Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
+        // Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
+
+    // });
+
+    Route::group(['middleware' => ['auth']], function () {
+        Route::group(['middleware' => ['cek_login:admin']], function () {
+            Route::resource('admin', AdminController::class);
+        });
+        Route::group(['middleware' => ['cek_login:user']], function () {
+            Route::resource('user', UserController::class);
+        });
     });
-});
+// });

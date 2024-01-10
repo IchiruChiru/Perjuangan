@@ -29,7 +29,7 @@ class LoginRequest extends FormRequest
         }
         return $this->only('username', 'password');
     }
-    
+
     private function isEmail($param)
     {
         $factory = $this->container->make(ValidationFactory::class);

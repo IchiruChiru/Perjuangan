@@ -28,12 +28,10 @@
                 </thead>
 
                 <tbody>
-                    @php
-                        $no = 1;
-                    @endphp
+            
                     @foreach ($barangs as $barang)
                         <tr>
-                            <td>{{ $no }}</td>
+                            <td>{{ $barang->id }}</td>
                             <td>{{ $barang->nama_barang }}</td>
                             <td>{{ $barang->merk_barang }}</td>
                             <td>{{ "Rp" . $barang->harga_barang }}</td>
@@ -80,15 +78,13 @@
                                     </div>
                                 </div>
                             </tr>
-                        @php
-                            $no++;
-                        @endphp
-
-
                     @endforeach
                 </tbody>
             </table>
     </div>
+
+    {{ $barangs->links() }}
+
         
         {{-- Modals Untuk Tambah Data Barang --}}       
 <!-- Modal -->

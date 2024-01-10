@@ -10,8 +10,8 @@ class LogoutController extends Controller
 {
     public function perform()
     {
-        Session::flush();
-        
+        $request->Session()->flush();
+
         Auth::logout();
         return redirect('pages.pages_lainnya.index');
     }

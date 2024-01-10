@@ -13,7 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <title>@yield('title', 'Judul Halaman')</title>
     <link rel="stylesheet" href="@yield('css','path-css')">
-    
+
 </head>
 
 <body>
@@ -33,7 +33,7 @@
                 <!-- Navbar -->
                 <ul class="sidebar-nav">
                     <li class="sidebar-header">
-                        
+
                     </li>
 
                     <li class="sidebar-item animate__animated animate__slideInLeft">
@@ -98,7 +98,7 @@
                             </li>
                         </ul>
                     </li>
-                    
+
                     <li class="sidebar-item animate__animated animate__slideInLeft">
                         <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#laporan"
                             aria-expanded="false" aria-controls="laporan">
@@ -116,7 +116,7 @@
                     </li>
 
                     <li class="sidebar-item animate__animated animate__slideInLeft">
-                        <a href="{{ url('/') }}" class="sidebar-link">
+                        <a href="{{ url('/logout') }}" class="sidebar-link">
                             <i class="fa-solid fa-right-from-bracket pe-2"></i>
                             <!-- <i class="fa-solid fa-list pe-2"></i> -->
                             Logout
@@ -144,12 +144,12 @@
             </main>
         </div>
     </div>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
     <script src="/js/master.js"></script>
-    
+
 </body>
 
 </html>

@@ -8,6 +8,7 @@ class TransaksiPenjualanController extends Controller
 {
     public function index()
     {
-        return view('pages.transaksi-penjualan');
+        $barangs = Barang::all();
+        return view('pages.pages_barang.list-data-barang',['barangs' => $barangs]);
     }
 }

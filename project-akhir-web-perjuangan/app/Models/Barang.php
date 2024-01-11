@@ -12,11 +12,11 @@ class Barang extends Model
 
     public function DetailTransaksiPembelian()
     {
-        return $this->BelongsTo('App\Models\DetailTransaksiPembelian');
+        return $this->hasMany('App\Models\DetailTransaksiPembelian');
     }
     public function DetailTransaksiPenjualan()
     {
-        return $this->BelongsTo('App\Models\DetailTransaksiPenjualan');
+        return $this->hasMany('App\Models\DetailTransaksiPenjualan');
     }
 
     protected $fillable = ['nama_barang','merk_barang','harga_barang','stok','peringatan_stok'];

@@ -32,8 +32,8 @@ Route::get('/dashboard', function(){
 });
 
 //Laporan keuangan
-Route::get('/laporanPembelian',[Controller::class, 'laporanPembelian']);
-Route::get('/laporanPenjualan',[Controller::class, 'laporanPenjualan']);
+Route::get('/laporanPembelian',[TransaksiPembelianController::class, 'index']);
+Route::get('/laporanPenjualan',[TransaksiPenjualanController::class, 'index']);
 
 //KelolaBarang
 Route::get('/listdatabarang',[BarangController::class, 'index']);
@@ -56,7 +56,7 @@ Route::post('/datasupplier/update/{id}',[SupplierController::class, 'update']);
 
 // Auth
 Route::group(['namespace' => 'App\Http\Controllers'], function()
-{   
+{
     /**
      * Home Routes
      */

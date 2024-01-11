@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\TransaksiPenjualan;
 use Illuminate\Http\Request;
 
 class TransaksiPenjualanController extends Controller
 {
     public function index()
     {
-        $barangs = Barang::all();
-        return view('pages.pages_barang.list-data-barang',['barangs' => $barangs]);
+        $transaksiPenjualans = TransaksiPenjualan::all();
+
+        return view('pages.pages_laporan.laporan-penjualan',['transaksiPenjualans' => $transaksiPenjualans]);
     }
 }

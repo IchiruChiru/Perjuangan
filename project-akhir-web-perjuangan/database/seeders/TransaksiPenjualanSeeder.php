@@ -37,3 +37,5 @@ class TransaksiPenjualanSeeder extends Seeder
         TransaksiPenjualan::insert($data);
     }
 }
+
+

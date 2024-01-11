@@ -12,6 +12,7 @@ class TransaksiPembelianSeeder extends Seeder
      */
     public function run(): void
     {
+
         $data =[
             [
                 'Supplier_id' => '2',
@@ -36,3 +37,5 @@ class TransaksiPembelianSeeder extends Seeder
         TransaksiPembelian::insert($data);
     }
 }
+
+

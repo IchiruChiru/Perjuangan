@@ -23,117 +23,148 @@ use App\Http\Controllers\UserController;
 */
 
 // Authentication and landing page
+// Route::get('/', function () {
+//     return view('pages.pages_lainnya.index');
+// });
+
+// //User
+// Route::middleware(['auth', 'cek_login:user'])->group(function () {
+//     //Dashboard
+//     Route::get('/dashboard', function () {
+//         return view('pages.pages_lainnya.dashboard');
+//     });
+//     //Laporan keuangan
+//     Route::get('/laporanPembelian', [Controller::class, 'laporanPembelian']);
+//     Route::get('/laporanPenjualan', [Controller::class, 'laporanPenjualan']);
+
+//     //KelolaBarang
+//     Route::get('/listdatabarang', [BarangController::class, 'index']);
+//     Route::get('/tambahdatabarang', [BarangController::class, 'create']);
+//     Route::post('/databarang/store', [BarangController::class, 'store']);
+//     Route::post('/databarang/update/{id}', [BarangController::class, 'update']);
+//     Route::get('/databarang/hapus/{id}', [BarangController::class, 'delete']);
+
+//     //Transaksi
+//     Route::get('/transaksipembelian', [TransaksiPembelianController::class, 'index']);
+//     Route::get('/transaksipenjualan', [TransaksiPenjualanController::class, 'index']);
+
+
+//     //Supplier
+//     Route::get('/listdatasupplier', [SupplierController::class, 'index']);
+//     Route::get('/tambahdatasupplier', [SupplierController::class, 'create']);
+//     Route::post('/datasupplier/store', [SupplierController::class, 'store']);
+//     Route::get('/datasupplier/hapus/{id}', [SupplierController::class, 'delete']);
+//     Route::post('/datasupplier/update/{id}', [SupplierController::class, 'update']);
+// });
+
+// //Admin
+// Route::middleware(['auth', 'cek_login:admin'])->group(function () {
+//     //Dashboard
+//     Route::get('/dashboard', function () {
+//         return view('pages.pages_lainnya.dashboard');
+//     });
+//     //Laporan keuangan
+//     Route::get('/laporanPembelian', [Controller::class, 'laporanPembelian']);
+//     Route::get('/laporanPenjualan', [Controller::class, 'laporanPenjualan']);
+
+//     //KelolaBarang
+//     Route::get('/listdatabarang', [BarangController::class, 'index']);
+//     Route::get('/tambahdatabarang', [BarangController::class, 'create']);
+//     Route::post('/databarang/store', [BarangController::class, 'store']);
+//     Route::post('/databarang/update/{id}', [BarangController::class, 'update']);
+//     Route::get('/databarang/hapus/{id}', [BarangController::class, 'delete']);
+
+//     //Transaksi
+//     Route::get('/transaksipembelian', [TransaksiPembelianController::class, 'index']);
+//     Route::get('/transaksipenjualan', [TransaksiPenjualanController::class, 'index']);
+
+
+//     //Supplier
+//     Route::get('/listdatasupplier', [SupplierController::class, 'index']);
+//     Route::get('/tambahdatasupplier', [SupplierController::class, 'create']);
+//     Route::post('/datasupplier/store', [SupplierController::class, 'store']);
+//     Route::get('/datasupplier/hapus/{id}', [SupplierController::class, 'delete']);
+//     Route::post('/datasupplier/update/{id}', [SupplierController::class, 'update']);
+// });
+
+
+// /**
+//  * Register Routes
+//  */
+
+// Route::get('register', [AuthController::class, 'register'])->name('register');
+// Route::post('proses_register', [AuthController::class, 'proses_register'])->name('proses_register');
+// /**
+//  * Login Routes
+//  */
+// Route::get('login', [AuthController::class, 'index'])->name('login');
+// Route::post('proses_login', [AuthController::class, 'proses_login'])->name('proses_login');
+// Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+
+// Route::group(['middleware' => ['auth']], function () {
+//     Route::group(['middleware' => ['cek_login:admin']], function () {
+//         Route::resource('admin', AdminController::class);
+//     });
+//     Route::group(['middleware' => ['cek_login:user']], function () {
+//         Route::resource('user', UserController::class);
+//     });
+// });
+
 Route::get('/', function () {
     return view('pages.pages_lainnya.index');
 });
-// Route::get('/login',[AuthController::class,'login']);
-// Route::get('/register',[AuthController::class,'register']);
 
-//User
-Route::middleware(['auth', 'cek_login:user'])->group(function () {
-    //Dashboard
-    Route::get('/dashboard', function () {
-        return view('pages.pages_lainnya.dashboard');
-    });
-    //Laporan keuangan
-    Route::get('/laporanPembelian', [Controller::class, 'laporanPembelian']);
-    Route::get('/laporanPenjualan', [Controller::class, 'laporanPenjualan']);
-
-    //KelolaBarang
-    Route::get('/listdatabarang', [BarangController::class, 'index']);
-    Route::get('/tambahdatabarang', [BarangController::class, 'create']);
-    Route::post('/databarang/store', [BarangController::class, 'store']);
-    Route::post('/databarang/update/{id}', [BarangController::class, 'update']);
-    Route::get('/databarang/hapus/{id}', [BarangController::class, 'delete']);
-
-    //Transaksi
-    Route::get('/transaksipembelian', [TransaksiPembelianController::class, 'index']);
-    Route::get('/transaksipenjualan', [TransaksiPenjualanController::class, 'index']);
-
-
-    //Supplier
-    Route::get('/listdatasupplier', [SupplierController::class, 'index']);
-    Route::get('/tambahdatasupplier', [SupplierController::class, 'create']);
-    Route::post('/datasupplier/store', [SupplierController::class, 'store']);
-    Route::get('/datasupplier/hapus/{id}', [SupplierController::class, 'delete']);
-    Route::post('/datasupplier/update/{id}', [SupplierController::class, 'update']);
-});
-
-//Admin
-Route::middleware(['auth', 'cek_login:admin'])->group(function () {
-    //Dashboard
-    Route::get('/dashboard', function () {
-        return view('pages.pages_lainnya.dashboard');
-    });
-    //Laporan keuangan
-    Route::get('/laporanPembelian', [Controller::class, 'laporanPembelian']);
-    Route::get('/laporanPenjualan', [Controller::class, 'laporanPenjualan']);
-
-    //KelolaBarang
-    Route::get('/listdatabarang', [BarangController::class, 'index']);
-    Route::get('/tambahdatabarang', [BarangController::class, 'create']);
-    Route::post('/databarang/store', [BarangController::class, 'store']);
-    Route::post('/databarang/update/{id}', [BarangController::class, 'update']);
-    Route::get('/databarang/hapus/{id}', [BarangController::class, 'delete']);
-
-    //Transaksi
-    Route::get('/transaksipembelian', [TransaksiPembelianController::class, 'index']);
-    Route::get('/transaksipenjualan', [TransaksiPenjualanController::class, 'index']);
-
-
-    //Supplier
-    Route::get('/listdatasupplier', [SupplierController::class, 'index']);
-    Route::get('/tambahdatasupplier', [SupplierController::class, 'create']);
-    Route::post('/datasupplier/store', [SupplierController::class, 'store']);
-    Route::get('/datasupplier/hapus/{id}', [SupplierController::class, 'delete']);
-    Route::post('/datasupplier/update/{id}', [SupplierController::class, 'update']);
-});
-
-// Auth
-// Route::group(['namespace' => 'App\Http\Controllers'], function()
-// {
-/**
- * Home Routes
- */
-// Route::get('/', 'HomeController@index')->name('home.index');
-// Route::get('/', function() {
-//     return view('pages.pages_lainnya.index');
-// });
-// Route::group(['middleware' => ['guest']], function() {
-/**
- * Register Routes
- */
-
-// Route::get('/register', 'RegisterController@show')->name('register.show');
-// Route::post('/register', 'RegisterController@register')->name('register.perform');
-
+// Auth routes
 Route::get('register', [AuthController::class, 'register'])->name('register');
 Route::post('proses_register', [AuthController::class, 'proses_register'])->name('proses_register');
-/**
- * Login Routes
- */
-// Route::get('/login', 'LoginController@show')->name('login.show');
-// Route::post('/login', 'LoginController@login')->name('login.perform');
 
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('proses_login', [AuthController::class, 'proses_login'])->name('proses_login');
 
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
-// });
-// Route::group(['middleware' => ['auth']], function() {
-/**
- * Logout Routes
- */
-// Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
 
-// });
+// Protected routes for both 'admin' and 'user'
+Route::middleware(['auth'])->group(function () {
+    // Dashboard
+    Route::get('/dashboard', function () {
+        return view('pages.pages_lainnya.dashboard');
+    });
 
-Route::group(['middleware' => ['auth']], function () {
+
+
+    // Common routes for both 'admin' and 'user'
+    Route::group(['middleware' => 'auth'], function () {
+        // KelolaBarang
+        Route::get('/listdatabarang', [BarangController::class, 'index']);
+        Route::get('/tambahdatabarang', [BarangController::class, 'create']);
+        Route::post('/databarang/store', [BarangController::class, 'store']);
+        Route::post('/databarang/update/{id}', [BarangController::class, 'update']);
+        Route::get('/databarang/hapus/{id}', [BarangController::class, 'delete']);
+
+
+
+        // Supplier
+        Route::get('/listdatasupplier', [SupplierController::class, 'index']);
+        Route::get('/tambahdatasupplier', [SupplierController::class, 'create']);
+        Route::post('/datasupplier/store', [SupplierController::class, 'store']);
+        Route::get('/datasupplier/hapus/{id}', [SupplierController::class, 'delete']);
+        Route::post('/datasupplier/update/{id}', [SupplierController::class, 'update']);
+    });
+
+    // Admin-specific routes
     Route::group(['middleware' => ['cek_login:admin']], function () {
         Route::resource('admin', AdminController::class);
+            // Laporan keuangan
+    Route::get('/laporanPembelian', [Controller::class, 'laporanPembelian']);
+    Route::get('/laporanPenjualan', [Controller::class, 'laporanPenjualan']);
     });
+
+    // User-specific routes
     Route::group(['middleware' => ['cek_login:user']], function () {
         Route::resource('user', UserController::class);
+           // Transaksi
+           Route::get('/transaksipembelian', [TransaksiPembelianController::class, 'index']);
+           Route::get('/transaksipenjualan', [TransaksiPenjualanController::class, 'index']);
     });
 });
-// });

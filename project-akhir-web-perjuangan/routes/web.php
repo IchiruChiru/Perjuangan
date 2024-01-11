@@ -137,7 +137,6 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['middleware' => 'auth'], function () {
         // KelolaBarang
         Route::get('/listdatabarang', [BarangController::class, 'index']);
-        Route::get('/tambahdatabarang', [BarangController::class, 'create']);
         Route::post('/databarang/store', [BarangController::class, 'store']);
         Route::post('/databarang/update/{id}', [BarangController::class, 'update']);
         Route::get('/databarang/hapus/{id}', [BarangController::class, 'delete']);
@@ -146,7 +145,6 @@ Route::middleware(['auth'])->group(function () {
 
         // Supplier
         Route::get('/listdatasupplier', [SupplierController::class, 'index']);
-        Route::get('/tambahdatasupplier', [SupplierController::class, 'create']);
         Route::post('/datasupplier/store', [SupplierController::class, 'store']);
         Route::get('/datasupplier/hapus/{id}', [SupplierController::class, 'delete']);
         Route::post('/datasupplier/update/{id}', [SupplierController::class, 'update']);
@@ -158,6 +156,8 @@ Route::middleware(['auth'])->group(function () {
             // Laporan keuangan
     Route::get('/laporanPembelian', [Controller::class, 'laporanPembelian']);
     Route::get('/laporanPenjualan', [Controller::class, 'laporanPenjualan']);
+    Route::get('/tambahdatabarang', [BarangController::class, 'create']);
+    Route::get('/tambahdatasupplier', [SupplierController::class, 'create']);
     });
 
     // User-specific routes
@@ -166,5 +166,6 @@ Route::middleware(['auth'])->group(function () {
            // Transaksi
            Route::get('/transaksipembelian', [TransaksiPembelianController::class, 'index']);
            Route::get('/transaksipenjualan', [TransaksiPenjualanController::class, 'index']);
+
     });
 });

@@ -51,6 +51,7 @@
                         </a>
                     </li>
 
+                    @if(Auth::user()->level=== 'user')
                     <li class="sidebar-item animate__animated animate__slideInLeft">
                         <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#transaksi"
                             aria-expanded="false" aria-controls="transaksi">
@@ -66,6 +67,7 @@
                             </li>
                         </ul>
                     </li>
+                    @endif
 
                     <li class="sidebar-item animate__animated animate__slideInLeft">
                         <a href="#" class="sidebar-link collapsed " data-bs-toggle="collapse" data-bs-target="#kelola-barang"
@@ -77,9 +79,11 @@
                             <li class="sidebar-item ">
                                 <a href="{{ url('/listdatabarang') }}" class="sidebar-link detail-link animate__animated animate__slideInLeft">List Data Barang</a>
                             </li>
+                            @if(Auth::user()->level=== 'admin')
                             <li class="sidebar-item">
                                 <a href="{{ url('/tambahdatabarang') }}" class="sidebar-link detail-link animate__animated animate__slideInLeft">Tambah Data Barang</a>
                             </li>
+                            @endif
                         </ul>
                     </li>
 
@@ -93,18 +97,29 @@
                             <li class="sidebar-item">
                                 <a href="{{ url('/listdatasupplier') }}" class="sidebar-link animate__animated animate__slideInLeft">List Data Supplier</a>
                             </li>
+                            @if(Auth::user()->level=== 'admin')
                             <li class="sidebar-item">
                                 <a href="{{ url('/tambahdatasupplier') }}" class="sidebar-link animate__animated animate__slideInLeft">Tambah Data Supplier</a>
                             </li>
+                            @endif
                         </ul>
                     </li>
-
+                    @if(Auth::user()->level=== 'admin')
                     <li class="sidebar-item animate__animated animate__slideInLeft">
                         <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#laporan"
                             aria-expanded="false" aria-controls="laporan">
                             <i class="fa-regular fa-file-lines pe-2"></i>
                             Laporan
                         </a>
+                        {{-- <ul id="laporan" class="sidebar-dropdown list-unstyled collapse detail-dropdown" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a href="{{ url('/laporanPembelian') }}" class="sidebar-link animate__animated animate__slideInLeft">Laporan Pembelian</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="{{ url('/laporanPenjualan') }}" class="sidebar-link animate__animated animate__slideInLeft">Laporan Penjualan</a>
+                            </li>
+                        </ul> --}}
+
                         <ul id="laporan" class="sidebar-dropdown list-unstyled collapse detail-dropdown" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
                                 <a href="{{ url('/laporanPembelian') }}" class="sidebar-link animate__animated animate__slideInLeft">Laporan Pembelian</a>
@@ -113,6 +128,7 @@
                                 <a href="{{ url('/laporanPenjualan') }}" class="sidebar-link animate__animated animate__slideInLeft">Laporan Penjualan</a>
                             </li>
                         </ul>
+                        @endif
                     </li>
 
                     <li class="sidebar-item animate__animated animate__slideInLeft">

@@ -108,6 +108,9 @@
 tr>td {
   text-align: left  !important;
 }
+tr.header>td.aksi {
+  text-align: center  !important;
+}
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {
   .navigation {
@@ -267,9 +270,5 @@ tr>td {
 }
 
 .page-link {
-  color: #2a35b4;
-}
-
-.pagination {
-  margin-top: 20px;
+  color: #212878;
 }

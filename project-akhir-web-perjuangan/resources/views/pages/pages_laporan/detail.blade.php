@@ -1,8 +1,7 @@
 @extends('layout.master')
 <link rel="stylesheet" href="css/tambah-data.css">
 @section('title','list Data Laporan Pembelian')
-<link rel="stylesheet" href="css/listdata.css">
-
+@section('css','css/listdata.css')
 @section('content')
 
     <div class="details">
@@ -31,18 +30,17 @@
                     @php
                         $no = 1;
                     @endphp
-                    @foreach ($transaksiPembelians as $transaksiPembelian)
+                   
                         <tr>
-                            <td>{{ $no }}</td>
+                            {{-- <td>{{ $no }}</td>
                             <td>{{ $transaksiPembelian->tgl_transaksi }}</td>
                             <td>{{ $transaksiPembelian->nama_supplier }}</td>
                             <td>Rp {{  $transaksiPembelian->sub_total}}</td>
-                            <a href="route('detailpembelian')"></a>
                             <td><button class="button"  data-toggle="modal" data-target="#modal-edit{{ $transaksiPembelian->id }}"><i class="fa-solid fa-pen-to-square"></i> Edit</button></td>
                             <td><button class="button-hapus" onclick="hapusData('/detaillaporanPembelian/{{ $transaksiPembelian->id }}')"><i class="fa-solid fa-trash"></i> Hapus</button></td>
 
                             {{-- Modals setelah Button Edit di klik --}}
-                            <div class="modal fade" id="modal-edit{{ $transaksiPembelian->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            {{-- <div class="modal fade" id="modal-edit{{ $transaksiPembelian->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -72,10 +70,10 @@
                             </tr>
                         @php
                             $no++;
-                        @endphp
+                        @endphp --}}
 
 
-                    @endforeach
+          --}}
                 </tbody>
             </table>
     </div>

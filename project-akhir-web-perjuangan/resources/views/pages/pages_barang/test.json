@@ -1,0 +1,20 @@
+[
+    {"id":1,
+    "Supplier_id":2,
+    "tgl_transaksi":"2024-02-01",
+    "sub_total":2000,
+    "created_at":null,
+    "updated_at":null,
+    "suppliers":null,
+    "detail_transaksi_pembelian":[{
+        "id":1,
+        "Barang_id":1,
+        "Transaksi_Pembelian_id":1,
+        "jumlah_beli":1,
+        "created_at":null,
+        "updated_at":null}
+        ,{"id":2,"Barang_id":1,"Transaksi_Pembelian_id":1,"jumlah_beli":1,"created_at":null,"updated_at":null},{"id":3,"Barang_id":1,"Transaksi_Pembelian_id":1,"jumlah_beli":1,"created_at":null,"updated_at":null}]},{"id":2,"Supplier_id":2,"tgl_transaksi":"2024-04-01","sub_total":2000,"created_at":null,"updated_at":null,"suppliers":null,"detail_transaksi_pembelian":[]},{"id":3,"Supplier_id":2,"tgl_transaksi":"2024-01-01","sub_total":2000,"created_at":null,"updated_at":null,"suppliers":null,"detail_transaksi_pembelian":[]}]
+
+
+
+     --}} --}}

@@ -36,7 +36,7 @@
 
             <table class="table table-striped">
                 <thead>
-                    <tr>
+                    <tr class="header">
                         <td>No</td>
                         <td>Nama Barang</td>
                         <td>Merk Barang</td>
@@ -44,7 +44,7 @@
                         <td>Stok</td>
                         <td>Ketersediaan</td>
                         @if(Auth::user()->level=== 'admin')
-                        <td colspan="2">Aksi</td>
+                        <td colspan="2" class="aksi">Aksi</td>
                         @endif
                     </tr>
                 </thead>
@@ -56,7 +56,7 @@
                             <td>{{ $barangs->firstItem()+ $key }}</td>
                             <td>{{ $barang->nama_barang }}</td>
                             <td>{{ $barang->merk_barang }}</td>
-                            <td>{{ "Rp" . $barang->harga_barang }}</td>
+                            <td>{{ "Rp " . $barang->harga_barang }}</td>
                             <td>{{ $barang->stok }}</td>
                             @if ($barang->stok == 0)
                             <td><span class="status habis">Habis</span></td>

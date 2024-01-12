@@ -9,8 +9,11 @@ use App\Http\Controllers\TransaksiPembelianController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DetailTransaksiPembelianController;
+use App\Http\Controllers\DetailTransaksiPenjualanController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Models\TransaksiPembelian;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 
 /*
@@ -147,8 +150,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/databarang/update/{id}', [BarangController::class, 'update']);
         Route::get('/databarang/hapus/{id}', [BarangController::class, 'delete']);
 
-
-
+        // Route::get('/detail', [DetailTransaksiPembelianController::class, 'baru']);
+      
         // Supplier
         Route::get('/listdatasupplier', [SupplierController::class, 'index']);
         Route::post('/datasupplier/store', [SupplierController::class, 'store']);
@@ -160,8 +163,10 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['middleware' => ['cek_login:admin']], function () {
         Route::resource('admin', AdminController::class);
             // Laporan keuangan
-    Route::get('/laporanPembelian', [Controller::class, 'laporanPembelian']);
-    Route::get('/laporanPenjualan', [Controller::class, 'laporanPenjualan']);
+    Route::get('/laporanPembelian', [TransaksiPembelianController::class, 'index']);
+    Route::get('/laporanPenjualan', [TransaksiPenjualanController::class, 'index']);
+    Route::get('/detaillaporanPembelian/{id}', [DetailTransaksiPembelianController::class, 'show'])->name('detailpembelian');
+    Route::get('/detaillaporanPenjualan/{id}', [DetailTransaksiPenjualanController::class, 'index']);
     Route::get('/tambahdatabarang', [BarangController::class, 'create']);
     Route::get('/tambahdatasupplier', [SupplierController::class, 'create']);
     });

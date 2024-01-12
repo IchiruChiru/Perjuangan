@@ -35,14 +35,14 @@
             </div>
             {{-- Tampil Data --}}
             <table class="table table-striped">
-                <thead>
-                    <tr>
+                <thead >
+                    <tr  class="header">
                         <td>No</td>
                         <td>Nama Supplier</td>
                         <td>Lokasi</td>
                         <td>Nomor Telp</td>
                         @if(Auth::user()->level=== 'admin')
-                        <td colspan="2">Aksi</td>
+                        <td colspan="2"  class="aksi">Aksi</td>
                         @endif
                     </tr>
                 </thead>

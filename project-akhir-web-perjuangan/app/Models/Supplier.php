@@ -9,7 +9,7 @@ class Supplier extends Model
 {
     use HasFactory;
     public function transaksi_pembelians(){
-        return $this->hasMany('App\Models\TransaksiPembelian');
+        return $this->belongTo('App\Models\TransaksiPembelian');
     }
     protected $fillable = ['nama_supplier','lokasi_supplier','no_telp'];
 }

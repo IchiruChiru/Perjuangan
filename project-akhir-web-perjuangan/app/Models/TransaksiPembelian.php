@@ -10,6 +10,12 @@ class TransaksiPembelian extends Model
     use HasFactory;
 
     public function suppliers(){
-        return $this->belongsTo('App\Models\Supplier');
+        return $this->belongsTo(Supplier::class, 'Supplier_id','id');
     }
+
+    public function detailTransaksiPembelian()
+    {
+        return $this->hasMany(DetailTransaksiPembelian::class, 'Transaksi_Pembelian_id', 'id');
+    }
+
 }

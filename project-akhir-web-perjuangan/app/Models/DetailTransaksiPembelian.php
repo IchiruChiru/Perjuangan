@@ -11,11 +11,13 @@ class DetailTransaksiPembelian extends Model
 
     public function Barang()
     {
-        return $this->hasMany('App\Models\Barang');
+        return $this->belongTo('App\Models\Barang');
     }
 
-    // public function TransaksiPembelian()
-    // {
-    //     return $this->belongsTo('App\Models\TransaksiPembelian');
-    // }
+     public function TransaksiPembelian()
+     {
+         return $this->belongTo('App\Models\TransaksiPembelian');
+     }
+
+     protected $fillable=['Barang_id', 'TransaksiPembelian_id','jumlah_id'];
 }

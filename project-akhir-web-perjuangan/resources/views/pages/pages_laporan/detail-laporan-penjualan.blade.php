@@ -18,7 +18,7 @@
                 <thead>
                     <tr>
                         <td>No</td>
-                        <td>Kasir ID</td>
+                        <td> ID</td>
                         <td>Sub Total</td>
                         <td>Tanggal Transaksi</td>
                         <td>Stok</td>
@@ -113,12 +113,12 @@
         </div>
     </div>
 
-    {{-- Memanggil view alert --}}
+    {{-- Memanggil view alert
     @include('layout.alert',
         [   'is_session_pesan_exist'=>Session::has('pesan'),
             'session_pesan'=>Session::get('pesan'),
             'id' => $transaksiPenjualan->id ?? '',
             'namaTable'=>'barang'
-        ]),
+        ]), --}}
     <script src="../js/listdata.js"></script>
 @endsection

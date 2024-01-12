@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\Supplier::factory(10)->create();
         $this->call(BarangSeeder::class);
+        $this->call(AkunSeeder::class);
 
     }
 }

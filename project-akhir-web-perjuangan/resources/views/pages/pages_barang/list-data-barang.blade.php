@@ -8,10 +8,12 @@
         <div class="format-table">
             <div class="cardHeader">
                 <h2>List Data Barang</h2>
+                @if(Auth::user()->level=== 'admin')
                 <a class="btn" data-toggle="modal" data-target="#modal-inputbarang">
                     <i class="fa-solid fa-plus"></i>
                     Tambah Data Barang
                 </a>
+                @endif
             </div>
 
             <table>
@@ -23,28 +25,33 @@
                         <td>Harga</td>
                         <td>Stok</td>
                         <td>Ketersediaan</td>
+                        @if(Auth::user()->level=== 'admin')
                         <td colspan="2">Aksi</td>
+                        @endif
                     </tr>
                 </thead>
 
                 <tbody>
             
-                    @foreach ($barangs as $barang)
+                    @foreach ($barangs as $key => $barang)
                         <tr>
-                            <td>{{ $barang->id }}</td>
+                            <td>{{ $barangs->firstItem()+ $key }}</td>
                             <td>{{ $barang->nama_barang }}</td>
                             <td>{{ $barang->merk_barang }}</td>
                             <td>{{ "Rp" . $barang->harga_barang }}</td>
                             <td>{{ $barang->stok }}</td>
-                            @if ($barang->stok == 0) 
+                            @if ($barang->stok == 0)
                             <td><span class="status habis">Habis</span></td>
                             @elseif ($barang->stok < $barang->peringatan_stok)
                                 <td><span class="status hampirhabis">Hampir Habis</span></td>
                             @else
                                 <td><span class="status tersedia">Tersedia</span></td>
                             @endif
+
+                            @if(Auth::user()->level=== 'admin')
                             <td><button class="button"  data-toggle="modal" data-target="#modal-edit{{ $barang->id }}"><i class="fa-solid fa-pen-to-square"></i> Edit</button></td>
                             <td><button class="button-hapus" onclick="konfirmasi(event, {{ $barang->id }})"><i class="fa-solid fa-trash"></i> Hapus</button></td>
+                            @endif
 
                             {{-- Modals setelah Button Edit di klik --}}
                             <div class="modal fade" id="modal-edit{{ $barang->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -81,12 +88,23 @@
                     @endforeach
                 </tbody>
             </table>
+
+            <div class="url-paginasi">
+                {{ $barangs->links() }}
+            </div>
+            <div class="informasi-paginasi">
+                <span>Menampilkan</span>
+                {{ $barangs->firstItem() }}
+                <span> - </span>
+                {{ $barangs->lastItem() }}
+                <span>dari</span>
+                {{ $barangs->total() }}
+                <span>data</span>
+            </div>
     </div>
 
-    {{ $barangs->links() }}
 
-        
-        {{-- Modals Untuk Tambah Data Barang --}}       
+        {{-- Modals Untuk Tambah Data Barang --}}
 <!-- Modal -->
 
         <div class="modal fade" id="modal-inputbarang" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -121,7 +139,7 @@
             </div>
         </div>
     </div>
-    
+
     {{-- Memanggil view alert --}}
     @include('layout.alert',
         [   'is_session_pesan_exist'=>Session::has('pesan'),

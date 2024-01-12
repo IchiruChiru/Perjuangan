@@ -10,7 +10,7 @@ class SupplierController extends Controller
 {
     public function index()
     {
-        $suppliers = Supplier::all();
+        $suppliers = Supplier::paginate(10);
         return view('pages.pages_supplier.list-data-supplier',['suppliers' => $suppliers]);
     }
     public function create()

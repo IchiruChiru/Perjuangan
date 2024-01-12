@@ -12,10 +12,10 @@ class Controller extends BaseController
 
     public function laporanPembelian()
     {
-        return view('pages.laporan-pembelian');
+        return view('pages.pages_laporan.laporan-pembelian');
     }
     public function laporanPenjualan()
     {
-        return view('pages.laporan-penjualan');
+        return view('pages.pages_laporan.laporan-penjualan');
     }
 }

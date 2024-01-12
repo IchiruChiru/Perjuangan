@@ -3,7 +3,7 @@
 @section('title','list Data barang')
 @section('css','css/listdata.css')
 @section('content')
-
+    {{-- HEADING DAN BUTTON TAMBAH --}}
     <div class="details">
         <div class="format-table">
             <div class="cardHeader">
@@ -15,8 +15,26 @@
                 </a>
                 @endif
             </div>
+            {{-- TOMBOL SEARCH --}}
+                <div class="cardHeader">
+                    <div class="card-header">
+                        <div class="card-tools">
+                            <form action="{{  url('/listdatabarang')}}"  method="GET">
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                    <input type="text" name="search" class="form-control float-right"
+                                        placeholder="Search" value="{{ $request->get('search') }}" style="width: 70%;">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-default">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
-            <table>
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <td>No</td>
@@ -33,7 +51,7 @@
 
                 <tbody>
             
-                    @foreach ($barangs as $key => $barang)
+                    @forelse ($barangs as $key => $barang)
                         <tr>
                             <td>{{ $barangs->firstItem()+ $key }}</td>
                             <td>{{ $barang->nama_barang }}</td>
@@ -84,8 +102,13 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                                @empty
+                                <tr>
+                                    <td class="text-center" colspan="7">Tidak ada data yang ditemukan.</td>
+                                </tr>
                             </tr>
-                    @endforeach
+                    @endforelse
                 </tbody>
             </table>
 
@@ -144,7 +167,7 @@
     @include('layout.alert',
         [   'is_session_pesan_exist'=>Session::has('pesan'),
             'session_pesan'=>Session::get('pesan'),
-            'id' => $barang->id,
+            'id' => $barang->id ??'',
             'namaTable'=>'barang'
         ]),
     <script src="../js/listdata.js"></script>

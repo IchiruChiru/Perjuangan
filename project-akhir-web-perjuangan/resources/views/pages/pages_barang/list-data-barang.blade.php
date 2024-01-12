@@ -3,7 +3,7 @@
 @section('title','list Data barang')
 @section('css','css/listdata.css')
 @section('content')
-
+    {{-- HEADING DAN BUTTON TAMBAH --}}
     <div class="details">
         <div class="format-table">
             <div class="cardHeader">
@@ -15,8 +15,26 @@
                 </a>
                 @endif
             </div>
+            {{-- TOMBOL SEARCH --}}
+                <div class="cardHeader">
+                    <div class="card-header">
+                        <div class="card-tools">
+                            <form action="{{  url('/listdatabarang')}}"  method="GET">
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                    <input type="text" name="search" class="form-control float-right"
+                                        placeholder="Search" value="{{ $request->get('search') }}" style="width: 70%;">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-default">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
-            <table>
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <td>No</td>
@@ -32,12 +50,10 @@
                 </thead>
 
                 <tbody>
-                    @php
-                        $no = 1;
-                    @endphp
-                    @foreach ($barangs as $barang)
+            
+                    @forelse ($barangs as $key => $barang)
                         <tr>
-                            <td>{{ $no }}</td>
+                            <td>{{ $barangs->firstItem()+ $key }}</td>
                             <td>{{ $barang->nama_barang }}</td>
                             <td>{{ $barang->merk_barang }}</td>
                             <td>{{ "Rp" . $barang->harga_barang }}</td>
@@ -86,16 +102,30 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                                @empty
+                                <tr>
+                                    <td class="text-center" colspan="7">Tidak ada data yang ditemukan.</td>
+                                </tr>
                             </tr>
-                        @php
-                            $no++;
-                        @endphp
-
-
-                    @endforeach
+                    @endforelse
                 </tbody>
             </table>
+
+            <div class="url-paginasi">
+                {{ $barangs->links() }}
+            </div>
+            <div class="informasi-paginasi">
+                <span>Menampilkan</span>
+                {{ $barangs->firstItem() }}
+                <span> - </span>
+                {{ $barangs->lastItem() }}
+                <span>dari</span>
+                {{ $barangs->total() }}
+                <span>data</span>
+            </div>
     </div>
+
 
         {{-- Modals Untuk Tambah Data Barang --}}
 <!-- Modal -->
@@ -137,7 +167,7 @@
     @include('layout.alert',
         [   'is_session_pesan_exist'=>Session::has('pesan'),
             'session_pesan'=>Session::get('pesan'),
-            'id' => $barang->id,
+            'id' => $barang->id ??'',
             'namaTable'=>'barang'
         ]),
     <script src="../js/listdata.js"></script>

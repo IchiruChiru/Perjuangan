@@ -15,9 +15,26 @@
                 </a>
                 @endif
             </div>
-
+             {{-- TOMBOL SEARCH --}}
+            <div class="cardHeader">
+                <div class="card-header">
+                    <div class="card-tools">
+                        <form action="{{  url('/listdatasupplier')}}"  method="GET">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" name="search" class="form-control float-right"
+                                    placeholder="Search" value="{{ $request->get('search') }}" style="width: 70%;">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
             {{-- Tampil Data --}}
-            <table>
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <td>No</td>
@@ -31,7 +48,7 @@
                 </thead>
                 <tbody>
                     <?php $no = 1; ?>
-                    @foreach ($suppliers as $supplier)
+                    @forelse ($suppliers as $supplier)
                         <tr>
                             <td>{{ $no }}</td>
                             <td>{{ $supplier->nama_supplier }}</td>
@@ -75,11 +92,31 @@
                                     </div>
                                 </div>
                             </div>
+                            @empty
+                            <tr>
+                                <td class="text-center" colspan="7">Tidak ada data yang ditemukan.</td>
+                            </tr>
                         </tr>
-                    @endforeach
+                    </tr>
+                    @endforelse
                 </tbody>
             </table>
+
+            <div class="url-paginasi">
+                {{ $suppliers->links() }}
+            </div>
+            <div class="informasi-paginasi">
+                <span>Menampilkan</span>
+                {{ $suppliers->firstItem() }}
+                <span> - </span>
+                {{ $suppliers->lastItem() }}
+                <span>dari</span>
+                {{ $suppliers->total() }}
+                <span>data</span>
+            </div>
         </div>
+
+      
 
         {{-- MODAL TAMBAH DATA SUPPLIER --}}
         <div class="modal fade" id="modal-inputsupplier" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -113,7 +150,7 @@
     @include('layout.alert',
     [   'is_session_pesan_exist'=>Session::has('pesan'),
         'session_pesan'=>Session::get('pesan'),
-        'id' => $supplier->id,
+        'id' => $supplier->id ??'',
         'namaTable'=>'supplier'
     ]),
     <script src="../js/listdata.js"></script>

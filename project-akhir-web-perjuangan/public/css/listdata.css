@@ -259,3 +259,17 @@ tr>td {
   box-shadow: none;
   transform: translateY(0);
  }
+
+ .pagination .page-item.active .page-link {
+  background-color: var(--blue);
+  border-color: #3f4ef3;
+  color: white;
+}
+
+.page-link {
+  color: #2a35b4;
+}
+
+.pagination {
+  margin-top: 20px;
+}

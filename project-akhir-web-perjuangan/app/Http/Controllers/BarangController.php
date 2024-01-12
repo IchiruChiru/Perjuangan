@@ -7,10 +7,17 @@ use Illuminate\Http\Request;
 
 class BarangController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $barangs = Barang::all();
-        return view('pages.pages_barang.list-data-barang',['barangs' => $barangs]);
+        $barangs = new Barang();
+
+        if($request->get("search"))
+        {
+            $barangs = $barangs->where('nama_barang','LIKE','%'.$request->get("search")."%");
+            
+        }
+        $barangs = $barangs->paginate(10);
+        return view('pages.pages_barang.list-data-barang',['barangs' => $barangs,'request' => $request]);
     }
     public function create()
     {

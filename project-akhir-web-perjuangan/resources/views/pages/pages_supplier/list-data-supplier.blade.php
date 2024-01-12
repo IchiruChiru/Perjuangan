@@ -8,10 +8,12 @@
         <div class="format-table">
             <div class="cardHeader">
                 <h2>List Data Supplier</h2>
+                @if(Auth::user()->level=== 'admin')
                 <a class="btn" data-toggle="modal" data-target="#modal-inputsupplier">
                     <i class="fa-solid fa-plus"></i>
                     Tambah Data Supplier
                 </a>
+                @endif
             </div>
 
             {{-- Tampil Data --}}
@@ -22,7 +24,9 @@
                         <td>Nama Supplier</td>
                         <td>Lokasi</td>
                         <td>Nomor Telp</td>
+                        @if(Auth::user()->level=== 'admin')
                         <td colspan="2">Aksi</td>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -33,12 +37,14 @@
                             <td>{{ $supplier->nama_supplier }}</td>
                             <td>{{ $supplier->lokasi_supplier }}</td>
                             <td>{{ $supplier->no_telp }}</td>
+                            @if(Auth::user()->level=== 'admin')
                             <td><button class="button" data-toggle="modal" data-target="#modal-edit{{ $supplier->id }}">
                                 <i class="fa-solid fa-pen-to-square"  ></i>
                                 Edit
                                 </button>
                             </td>
                             <td><button class="button-hapus" id="hapus" onclick="konfirmasi(event, {{ $supplier->id }})"><i class="fa-solid fa-trash"></i> Hapus</button></td>
+                            @endif
                             <?php $no++; ?>
 
                             {{-- Modals setelah Button Edit di klik --}}

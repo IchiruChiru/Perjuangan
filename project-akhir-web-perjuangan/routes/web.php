@@ -10,6 +10,8 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -135,6 +137,10 @@ Route::middleware(['auth'])->group(function () {
 
     // Common routes for both 'admin' and 'user'
     Route::group(['middleware' => 'auth'], function () {
+
+        // Profile
+        Route::get('/profile', [ProfileController::class, 'index']);
+
         // KelolaBarang
         Route::get('/listdatabarang', [BarangController::class, 'index']);
         Route::post('/databarang/store', [BarangController::class, 'store']);

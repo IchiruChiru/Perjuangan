@@ -37,7 +37,7 @@
                     </li>
 
                     <li class="sidebar-item animate__animated animate__slideInLeft">
-                        <a href="#" class="sidebar-link">
+                        <a href="{{ url('/profile') }}" class="sidebar-link">
                             <i class="fa-regular fa-user pe-2"></i>
                             <!-- <i class="fa-solid fa-list pe-2"></i> -->
                             Profile

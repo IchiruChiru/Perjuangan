@@ -9,10 +9,6 @@
         <div class="format-table">
             <div class="cardHeader">
                 <h2>List Data Laporan Pembelian</h2>
-                <a class="btn" data-toggle="modal" data-target="#modal-inputLaporan Pembelian">
-                    <i class="fa-solid fa-plus"></i>
-                    Tambah Data Laporan Pembelian
-                </a>
             </div>
 
             <table>
@@ -37,8 +33,7 @@
                             <td>{{ $transaksiPembelian->tgl_transaksi }}</td>
                             <td>{{ $transaksiPembelian->nama_supplier }}</td>
                             <td>Rp {{  $transaksiPembelian->sub_total}}</td>
-                            <a href="route('detailpembelian')"></a>
-                            <td><button class="button"  data-toggle="modal" data-target="#modal-edit{{ $transaksiPembelian->id }}"><i class="fa-solid fa-pen-to-square"></i> Edit</button></td>
+        
                             <td><button class="button-hapus" onclick="hapusData('/detaillaporanPembelian/{{ $transaksiPembelian->id }}')"><i class="fa-solid fa-trash"></i> Hapus</button></td>
 
                             {{-- Modals setelah Button Edit di klik --}}

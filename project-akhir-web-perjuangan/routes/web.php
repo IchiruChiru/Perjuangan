@@ -163,9 +163,9 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['middleware' => ['cek_login:admin']], function () {
         Route::resource('admin', AdminController::class);
             // Laporan keuangan
-    Route::get('/laporanPembelian', [TransaksiPembelianController::class, 'index']);
+    Route::get('/laporanPembelian', [TransaksiPembelianController::class, 'index'])->name('detailpembelian');
     Route::get('/laporanPenjualan', [TransaksiPenjualanController::class, 'index']);
-    Route::get('/detaillaporanPembelian/{id}', [DetailTransaksiPembelianController::class, 'show'])->name('detailpembelian');
+    Route::get('/detaillaporanPembelian/{id}', [DetailTransaksiPembelianController::class, 'index']);
     Route::get('/detaillaporanPenjualan/{id}', [DetailTransaksiPenjualanController::class, 'index']);
     Route::get('/tambahdatabarang', [BarangController::class, 'create']);
     Route::get('/tambahdatasupplier', [SupplierController::class, 'create']);

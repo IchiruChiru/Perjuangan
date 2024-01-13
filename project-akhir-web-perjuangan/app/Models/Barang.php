@@ -10,9 +10,9 @@ class Barang extends Model
 {
     use HasFactory;
 
-    public function DetailTransaksiPembelian()
+    public function detailTransaksiPembelian()
     {
-        return $this->hasMany('App\Models\DetailTransaksiPembelian');
+        return $this->hasMany(DetailTransaksiPembelian::class);
     }
     public function DetailTransaksiPenjualan()
     {

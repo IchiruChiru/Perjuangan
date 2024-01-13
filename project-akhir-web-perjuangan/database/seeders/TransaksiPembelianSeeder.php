@@ -20,18 +20,17 @@ class TransaksiPembelianSeeder extends Seeder
                 'sub_total' => '2000'
             ],
             [
-                'Supplier_id' => '2',
+                'Supplier_id' => '1',
                 'tgl_transaksi' => '2024-02-01',
                 'sub_total' => '2000'
             ],
             [
-                'Supplier_id' => '2',
+                'Supplier_id' => '3',
                 'tgl_transaksi' => '2024-04-01',
                 'sub_total' => '2000'
             ],
         ];
         // untuk mengacak urutan data
-        shuffle($data);
 
         // Masukkan data ke dalam tabel Transaksi Pembelian
         TransaksiPembelian::insert($data);

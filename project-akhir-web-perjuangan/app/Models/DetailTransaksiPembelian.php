@@ -9,14 +9,14 @@ class DetailTransaksiPembelian extends Model
 {
     use HasFactory;
 
-    public function Barang()
+    public function barangs()
     {
-        return $this->belongTo('App\Models\Barang');
+        return $this->belongsTo(Barang::class);
     }
 
      public function TransaksiPembelian()
      {
-         return $this->belongTo('App\Models\TransaksiPembelian');
+         return $this->belongsTo('App\Models\TransaksiPembelian');
      }
 
      protected $fillable=['Barang_id', 'TransaksiPembelian_id','jumlah_id'];

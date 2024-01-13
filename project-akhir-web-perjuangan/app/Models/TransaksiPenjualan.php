@@ -9,7 +9,7 @@ class TransaksiPenjualan extends Model
 {
     use HasFactory;
 
-    public function kasir(){
-        return $this->belongsTo('app\Models\Kasir');
+    public function user(){
+        return $this->belongsTo('app\Models\User');
     }
 }

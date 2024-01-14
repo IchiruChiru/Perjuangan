@@ -1,26 +1,28 @@
 @extends('layout.master')
 <link rel="stylesheet" href="css/tambah-data.css">
 @section('title','list Data Laporan Pembelian')
-<link rel="stylesheet" href="css/listdata.css">
-
+@section('css','css/listdata.css')
 @section('content')
 
     <div class="details">
         <div class="format-table">
             <div class="cardHeader">
                 <h2>List Data Laporan Pembelian</h2>
+                <a class="btn" data-toggle="modal" data-target="#modal-inputLaporan Pembelian">
+                    <i class="fa-solid fa-plus"></i>
+                    Tambah Data Laporan Pembelian
+                </a>
             </div>
 
-            <table class="table table-striped">
+            <table>
                 <thead>
                     <tr>
                         <td>No</td>
-                        <td>Id Transaksi</td>
                         <td>Tanggal Transaksi</td>
                         <td>Nama Supplier</td>
-                        <td>Nomor Telepon Supplier</td>
-                        <td>Grand Total</td>
-                        <td>Aksi</td>
+                        <td>Sub Total</td>
+                        <td>Stok</td>
+                        <td>Ketersediaan</td>
                     </tr>
                 </thead>
 
@@ -28,19 +30,17 @@
                     @php
                         $no = 1;
                     @endphp
-                    @forelse ($transaksiPembelians as $key => $transaksiPembelian) 
+                   
                         <tr>
-                            <td>{{ $transaksiPembelians->firstItem() + $key }}</td>
-                            <td>{{ $transaksiPembelian->id }}</td>
-                            <td>{{ \Carbon\Carbon::parse($transaksiPembelian->tgl_transaksi)->locale('id_ID')->isoFormat('D MMMM Y') }}</td>
+                            {{-- <td>{{ $no }}</td>
+                            <td>{{ $transaksiPembelian->tgl_transaksi }}</td>
                             <td>{{ $transaksiPembelian->nama_supplier }}</td>
-                            <td>{{ $transaksiPembelian->no_telp }}</td>
-                            <td>Rp {{  number_format($transaksiPembelian->sub_total, 0, ',', '.')}}</td>
-        
-                            <td><button class="button-detail" onclick="hapusData('/detaillaporanPembelian/{{ $transaksiPembelian->id }}')"><i class="fa-solid fa-circle-info"></i> Lihat Detail</button></td>
+                            <td>Rp {{  $transaksiPembelian->sub_total}}</td>
+                            <td><button class="button"  data-toggle="modal" data-target="#modal-edit{{ $transaksiPembelian->id }}"><i class="fa-solid fa-pen-to-square"></i> Edit</button></td>
+                            <td><button class="button-hapus" onclick="hapusData('/detaillaporanPembelian/{{ $transaksiPembelian->id }}')"><i class="fa-solid fa-trash"></i> Hapus</button></td>
 
                             {{-- Modals setelah Button Edit di klik --}}
-                            <div class="modal fade" id="modal-edit{{ $transaksiPembelian->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            {{-- <div class="modal fade" id="modal-edit{{ $transaksiPembelian->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -57,8 +57,8 @@
                                                     <input type="hidden" name="current_route" value="/listdataLaporan Pembelian">
                                                     <p class="text">Nama Supplier</p>
                                                     <input class="input" type="text" value="{{ $transaksiPembelian->nama_supplier }}" name="nama_Laporan Pembelian">
-                                                    <p class="text">Grand Total Laporan Pembelian</p>
-                                                    <input class="input" type="text" value="{{ number_format($transaksiPembelian->sub_total, 0, ',', '.')}}" name="Sub Total_Laporan Pembelian">
+                                                    <p class="text">Sub Total Laporan Pembelian</p>
+                                                    <input class="input" type="text" value="{{ $transaksiPembelian->sub_total }}" name="Sub Total_Laporan Pembelian">
 
                                                     <button class="btn-tambah" type="submit">
                                                         Tambah Data Laporan Pembelian
@@ -70,30 +70,12 @@
                             </tr>
                         @php
                             $no++;
-                        @endphp
+                        @endphp --}}
 
-                                @empty
-                                <tr>
-                                    <td class="text-center" colspan="7">Tidak ada data yang ditemukan.</td>
-                                </tr>
-                                </tr>
-                                @endforelse
-                
+
+          --}}
                 </tbody>
             </table>
-
-            <div class="url-paginasi">
-                {{ $transaksiPembelians->links() }}
-            </div>
-            <div class="informasi-paginasi">
-                <span>Menampilkan</span>
-                {{ $transaksiPembelians->firstItem() }}
-                <span> - </span>
-                {{ $transaksiPembelians->lastItem() }}
-                <span>dari</span>
-                {{ $transaksiPembelians->total() }}
-                <span>data</span>
-            </div>
     </div>
     <script>
         function hapusData(url) {

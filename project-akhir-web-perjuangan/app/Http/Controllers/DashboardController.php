@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\TransaksiPembelian;
-class AdminController extends Controller
+
+class DashboardController extends Controller
 {
-    //
     public function index() 
     {
         $jumlahTransaksiPembelian = TransaksiPembelian::count();

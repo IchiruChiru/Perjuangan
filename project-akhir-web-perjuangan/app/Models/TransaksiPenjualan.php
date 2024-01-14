@@ -9,7 +9,9 @@ class TransaksiPenjualan extends Model
 {
     use HasFactory;
 
-    public function kasir(){
-        return $this->belongsTo('app\Models\Kasir');
+    protected $fillable = ['User_id','sub_total','tgl_transaksi','id'];
+
+    public function user(){
+        return $this->belongsTo('app\Models\User');
     }
 }

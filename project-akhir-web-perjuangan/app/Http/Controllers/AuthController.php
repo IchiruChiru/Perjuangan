@@ -87,7 +87,8 @@ class AuthController extends Controller
             'name' => 'required',
             // 'username'=>'required|unique:users',
             'email' => 'required|email|unique:users',
-            'password' => 'required'
+            'password' => 'required',
+            'no_telp' => 'required'
         ]);
 
         // kalau gagal kembali ke halaman register dengan munculkan pesan error

@@ -15,10 +15,11 @@
                 <thead>
                     <tr>
                         <td>No</td>
+                        <td>Id Transaksi</td>
                         <td>Tanggal Transaksi</td>
                         <td>Nama Supplier</td>
                         <td>Nomor Telepon Supplier</td>
-                        <td>Sub Total</td>
+                        <td>Grand Total</td>
                         <td>Aksi</td>
                     </tr>
                 </thead>
@@ -27,13 +28,14 @@
                     @php
                         $no = 1;
                     @endphp
-                    @foreach ($transaksiPembelians as $transaksiPembelian)
+                    @forelse ($transaksiPembelians as $key => $transaksiPembelian) 
                         <tr>
-                            <td>{{ $no }}</td>
+                            <td>{{ $transaksiPembelians->firstItem() + $key }}</td>
+                            <td>{{ $transaksiPembelian->id }}</td>
                             <td>{{ \Carbon\Carbon::parse($transaksiPembelian->tgl_transaksi)->locale('id_ID')->isoFormat('D MMMM Y') }}</td>
                             <td>{{ $transaksiPembelian->nama_supplier }}</td>
                             <td>{{ $transaksiPembelian->no_telp }}</td>
-                            <td>Rp {{  $transaksiPembelian->sub_total}}</td>
+                            <td>Rp {{  number_format($transaksiPembelian->sub_total, 0, ',', '.')}}</td>
         
                             <td><button class="button-detail" onclick="hapusData('/detaillaporanPembelian/{{ $transaksiPembelian->id }}')"><i class="fa-solid fa-circle-info"></i> Lihat Detail</button></td>
 
@@ -55,8 +57,8 @@
                                                     <input type="hidden" name="current_route" value="/listdataLaporan Pembelian">
                                                     <p class="text">Nama Supplier</p>
                                                     <input class="input" type="text" value="{{ $transaksiPembelian->nama_supplier }}" name="nama_Laporan Pembelian">
-                                                    <p class="text">Sub Total Laporan Pembelian</p>
-                                                    <input class="input" type="text" value="{{ $transaksiPembelian->sub_total }}" name="Sub Total_Laporan Pembelian">
+                                                    <p class="text">Grand Total Laporan Pembelian</p>
+                                                    <input class="input" type="text" value="{{ number_format($transaksiPembelian->sub_total, 0, ',', '.')}}" name="Sub Total_Laporan Pembelian">
 
                                                     <button class="btn-tambah" type="submit">
                                                         Tambah Data Laporan Pembelian
@@ -70,10 +72,28 @@
                             $no++;
                         @endphp
 
-
-                    @endforeach
+                                @empty
+                                <tr>
+                                    <td class="text-center" colspan="7">Tidak ada data yang ditemukan.</td>
+                                </tr>
+                                </tr>
+                                @endforelse
+                
                 </tbody>
             </table>
+
+            <div class="url-paginasi">
+                {{ $transaksiPembelians->links() }}
+            </div>
+            <div class="informasi-paginasi">
+                <span>Menampilkan</span>
+                {{ $transaksiPembelians->firstItem() }}
+                <span> - </span>
+                {{ $transaksiPembelians->lastItem() }}
+                <span>dari</span>
+                {{ $transaksiPembelians->total() }}
+                <span>data</span>
+            </div>
     </div>
     <script>
         function hapusData(url) {

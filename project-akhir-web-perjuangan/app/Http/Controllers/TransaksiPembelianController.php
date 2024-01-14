@@ -16,7 +16,7 @@ class TransaksiPembelianController extends Controller
         //     ->select('detail_transaksi_pembelians.*','barangs.*')
         //     ->get();
         $transaksiPembelians = TransaksiPembelian::join('suppliers', 'transaksi_pembelians.supplier_id', '=', 'suppliers.id')
-        ->select('transaksi_pembelians.*', 'suppliers.*')->orderBy('transaksi_pembelians.tgl_transaksi','desc')->get();
+        ->select('transaksi_pembelians.*', 'suppliers.nama_supplier','suppliers.no_telp')->orderBy('transaksi_pembelians.tgl_transaksi','desc')->paginate(10);
 
         // Menambahkan join untuk mengakses data detail pembelian
         

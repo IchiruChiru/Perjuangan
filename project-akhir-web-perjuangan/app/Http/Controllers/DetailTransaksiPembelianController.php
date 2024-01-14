@@ -19,7 +19,7 @@ class DetailTransaksiPembelianController extends Controller
       ->join('barangs','detail_transaksi_pembelians.Barang_id','=','barangs.id')
       ->where('transaksi_pembelians.id', $id)
           ->select('transaksi_pembelians.*', 'suppliers.*','detail_transaksi_pembelians.*','barangs.*')
-          ->get();
+          ->paginate(10);
 
       // Menambahkan join untuk mengakses data detail pembelian
       

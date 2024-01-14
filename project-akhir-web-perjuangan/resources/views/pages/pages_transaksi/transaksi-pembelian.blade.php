@@ -1,72 +1,80 @@
 @extends('layout.master')
 
 @section('content')
-    <div class="card">
-        <div class="card-body">
-            <form action="{{ url('/transaksipembelian/store') }}" method="post">
-                @csrf
-                <div class="row">
-                    <div class="col-md-6 col-12">
-                        <div class="form-group">
-                            <select class="form-control" id="id">
-                                @foreach ($barangs as $barang)
-                                    <option value="{{ $barang->id }}" data-nama_barang="{{ $barang->nama_barang }}"
-                                        data-harga_barang="{{ $barang->harga_barang }}" data-id="{{ $barang->id }}">
-                                        {{ $barang->nama_barang }} (
-                                        Rp.<?= number_format($barang->harga_barang) ?> )</option>
-                                @endforeach
-                            </select>
-                            <select class="form-control" id="id_supplier">
-                                @foreach ($suppliers as $supplier)
-                                <option value="{{ $supplier->id }}" data-nama_supplier="{{ $supplier->nama_supplier }}">
-                                    {{ $supplier->nama_supplier }} </option>
-                                @endforeach
-                            </select>
+<div class="details">
+    <div class="format-table">
+        <div class="cardHeader">
+            <div class="card w-100">
+                <h2 class="m-3">Transaksi Pembelian</h2>
+                <div class="card-body">
+                    <form action="{{ url('/transaksipembelian/store') }}" method="post">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-6 col-12">
+                                <div class="form-group">
+                                    <select class="form-control" id="id">
+                                        @foreach ($barangs as $barang)
+                                            <option value="{{ $barang->id }}" data-nama_barang="{{ $barang->nama_barang }}"
+                                                data-harga_barang="{{ $barang->harga_barang }}" data-id="{{ $barang->id }}">
+                                                {{ $barang->nama_barang }} (
+                                                Rp.<?= number_format($barang->harga_barang) ?> )</option>
+                                        @endforeach
+                                    </select>
+                                    <select class="form-control mt-3 md-3" id="id_supplier">
+                                        @foreach ($suppliers as $supplier)
+                                        <option value="{{ $supplier->id }}" data-nama_supplier="{{ $supplier->nama_supplier }}">
+                                            {{ $supplier->nama_supplier }} </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <div class="form-group">
+                                    <label for="">&nbsp;</label>
+                                    <button class="btn btn-primary d-block" type="button" onclick="tambahItem()">Tambah Item</button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                        <div class="form-group">
-                            <label for="">&nbsp;</label>
-                            <button class="btn btn-primary d-block" type="button" onclick="tambahItem()">Tambah Item</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 table-responsive">
-                        <table class="table table-hover table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama Barang</th>
-                                    <th>Quantity</th>
-                                    <th>Harga Barang</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody class="transaksiItem">
+                        <div class="row">
+                            <div class="col-md-12 table-responsive">
+                                <table class="table table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama Barang</th>
+                                            <th>Quantity</th>
+                                            <th>Harga Barang</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="transaksiItem">
 
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th colspan="2">Jumlah</th>
-                                    <th class="quantity">0</th>
-                                    <th class="totalharga_barang">Rp 0</th>
-                                    <th></th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th colspan="2">Jumlah</th>
+                                            <th class="quantity">0</th>
+                                            <th class="totalharga_barang">Rp 0</th>
+                                            <th></th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="hidden" name="total_harga_barang" value="0">
+                                <input type="hidden" name="Supplier_id" id="Supplier_id" value="1">
+                                <button class="btn btn-success" onclick="">Simpan Transaksi</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <input type="hidden" name="total_harga_barang" value="0">
-                        <input type="hidden" name="Supplier_id" id="Supplier_id" value="1">
-                        <button class="btn btn-success">Simpan Transaksi</button>
-                    </div>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
+</div>
+    
     <script>
         // Fungsi formatRupiah untuk memformat angka ke dalam format mata uang Rupiah
         function formatRupiah(angka) {

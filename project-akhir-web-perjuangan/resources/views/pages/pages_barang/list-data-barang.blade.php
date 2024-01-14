@@ -21,7 +21,7 @@
                             <form action="{{  url('/listdatabarang')}}"  method="GET">
                                 <div class="input-group input-group-sm" style="width: 150px;">
                                     <input type="text" name="search" class="form-control float-right"
-                                        placeholder="Search" value="{{ $request->get('search') }}" style="width: 70%;">
+                                        placeholder="Cari Barang..." value="{{ $request->get('search') }}" style="width: 70%;">
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-default ">
                                             <i class="fas fa-search"></i>
@@ -89,7 +89,7 @@
                                                     <p class="text">Merk Barang</p>
                                                     <input class="input" type="text" value="{{ $barang->merk_barang }}" name="merk_barang">
                                                     <p class="text">Harga Barang</p>
-                                                    <input class="input" type="text" value="{{ number_format($barang->harga_barang, 0, ',', '.')}}" name="harga_barang">
+                                                    <input class="input" type="text" value="{{$barang->harga_barang  }}" name="harga_barang">
                                                     <p class="text">Ubah Stok Barang</p>
                                                     <input class="input" type="text" value="{{ $barang->stok }}"name="stok">
                                                     <p class="text">Peringatan Stok Barang</p>

@@ -4,7 +4,6 @@
 
         @if( $is_session_pesan_exist ?? false)
         <script>
-            
                 swal("Berhasil!!", "{{ $session_pesan }}", "success");
         </script>
         @else

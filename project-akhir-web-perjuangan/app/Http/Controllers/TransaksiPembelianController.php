@@ -58,7 +58,7 @@ class TransaksiPembelianController extends Controller
             $no_daftar++;
         }
     
-        return redirect()->back();
+        return redirect()->back()->with('pesan','Transaksi Pembelian Berhasil!!');
     }
     
 }

@@ -11,15 +11,15 @@
                 <h2>List Data Laporan Pembelian</h2>
             </div>
 
-            <table>
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <td>No</td>
                         <td>Tanggal Transaksi</td>
                         <td>Nama Supplier</td>
+                        <td>Nomor Telepon Supplier</td>
                         <td>Sub Total</td>
-                        <td>Stok</td>
-                        <td>Ketersediaan</td>
+                        <td>Aksi</td>
                     </tr>
                 </thead>
 
@@ -30,11 +30,12 @@
                     @foreach ($transaksiPembelians as $transaksiPembelian)
                         <tr>
                             <td>{{ $no }}</td>
-                            <td>{{ $transaksiPembelian->tgl_transaksi }}</td>
+                            <td>{{ \Carbon\Carbon::parse($transaksiPembelian->tgl_transaksi)->locale('id_ID')->isoFormat('D MMMM Y') }}</td>
                             <td>{{ $transaksiPembelian->nama_supplier }}</td>
+                            <td>{{ $transaksiPembelian->no_telp }}</td>
                             <td>Rp {{  $transaksiPembelian->sub_total}}</td>
         
-                            <td><button class="button-hapus" onclick="hapusData('/detaillaporanPembelian/{{ $transaksiPembelian->id }}')"><i class="fa-solid fa-trash"></i> Hapus</button></td>
+                            <td><button class="button-detail" onclick="hapusData('/detaillaporanPembelian/{{ $transaksiPembelian->id }}')"><i class="fa-solid fa-circle-info"></i> Lihat Detail</button></td>
 
                             {{-- Modals setelah Button Edit di klik --}}
                             <div class="modal fade" id="modal-edit{{ $transaksiPembelian->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

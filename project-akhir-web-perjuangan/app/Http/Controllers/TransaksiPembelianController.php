@@ -11,22 +11,14 @@ class TransaksiPembelianController extends Controller
 {
     public function index() 
     {
-        $barangs = Barang::all();
-        $suppliers = Supplier::all();
+        $barangs = Barang::orderBy('nama_barang', 'asc')->get();
+        $suppliers = Supplier::orderBy('nama_supplier', 'asc')->get();
         return view('pages.pages_transaksi.transaksi-pembelian',
         ['barangs' => $barangs,'suppliers' => $suppliers]);
     }
 
     public $query;
     public $products;
-
-    public function render()
-    {
-        $this->products = Barang::where('nama_barang', 'like', '%' . $this->query . '%')
-            ->get();
-
-            return view('pages.pages_transaksi.search-barang');
-    }
 
     public function selectProduct($nama, $merk, $harga, $stok)
     {

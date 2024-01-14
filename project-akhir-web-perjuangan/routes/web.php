@@ -174,7 +174,7 @@ Route::middleware(['auth'])->group(function () {
             // Laporan keuangan
     Route::get('/laporanPembelian', [LaporanPembelianController::class, 'index'])->name('detailpembelian');
     Route::get('/laporanPenjualan', [LaporanPenjualanController::class, 'index']);
-    Route::get('/detaillaporanPembelian/{id}', [DetailLaporanPenjualanController::class, 'index']);
+    Route::get('/detaillaporanPembelian/{id}', [DetailLaporanPembelianController::class, 'index']);
     Route::get('/detaillaporanPenjualan/{id}', [DetailLaporanPembelianController::class, 'index']);
     Route::get('/tambahdatabarang', [BarangController::class, 'create']);
     Route::get('/tambahdatasupplier', [SupplierController::class, 'create']);
@@ -184,9 +184,10 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['middleware' => ['cek_login:user']], function () {
         Route::resource('user', UserController::class);
            // Transaksi
-           Route::get('/transaksipembelian', [TransaksiPembelianController::class, 'index']);
-           Route::get('/transaksipenjualan', [TransaksiPenjualanController::class, 'index']);
-           Route::post('/transaksipembelian/store', [TransaksiPembelianController::class, 'store']);
+        Route::get('/transaksipembelian', [TransaksiPembelianController::class, 'index']);
+        Route::get('/transaksipenjualan', [TransaksiPenjualanController::class, 'index']);
+        Route::post('/transaksipenjualan/store', [TransaksiPenjualanController::class, 'store']);
+        Route::post('/transaksipembelian/store', [TransaksiPembelianController::class, 'store']);
 
     });
 });

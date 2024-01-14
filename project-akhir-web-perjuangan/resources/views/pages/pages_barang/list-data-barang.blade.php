@@ -24,7 +24,7 @@
                                     <input type="text" name="search" class="form-control float-right"
                                         placeholder="Search" value="{{ $request->get('search') }}" style="width: 70%;">
                                     <div class="input-group-append">
-                                        <button type="submit" class="btn btn-default">
+                                        <button type="submit" class="btn btn-default ">
                                             <i class="fas fa-search"></i>
                                         </button>
                                     </div>

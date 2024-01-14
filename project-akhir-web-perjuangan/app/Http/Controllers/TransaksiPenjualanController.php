@@ -34,7 +34,7 @@ class TransaksiPenjualanController extends Controller
         $transaksi = new TransaksiPenjualan();
         $jumlah_transaksi = TransaksiPenjualan::count();
         $transaksi->fill([
-            'Transaksi_Penjualan_id' => $jumlah_transaksi,
+            'Transaksi_Penjualan_id' => $jumlah_transaksi ,
             'sub_total' => $request->total_harga_barang,
             'User_id' => $request->User_id,
             'tgl_transaksi' => now(),
@@ -56,7 +56,7 @@ class TransaksiPenjualanController extends Controller
             $no_daftar++;
         }
     
-        return print($request);
+        return redirect()->back();
     }
     
 }

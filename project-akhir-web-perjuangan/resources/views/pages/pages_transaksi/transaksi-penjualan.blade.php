@@ -18,11 +18,9 @@
                                         Rp.<?= number_format($barang->harga_barang) ?> )</option>
                                 @endforeach
                             </select>
-                            <select class="form-control" id="id_user">
-                                @foreach ($users as $user)
-                                <option value="{{ $user->id }}" data-nama_user="{{ $user->name }}">
-                                    {{ $user->name }} </option>
-                                @endforeach
+                            <select class="form-control my-3" id="id_user disabled">
+                                <option value="{{ auth()->user()->id }}" data-nama_user="{{ auth()->user()->name }}">
+                                    {{ auth()->user()->name }} </option>
                             </select>
                         </div>
                     </div>
@@ -62,7 +60,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <input type="hidden" name="total_harga_barang" value="0">
-                        <input type="hidden" name="User_id" id="User_id" value="">
+                        <input type="hidden" name="User_id" id="User_id" value="{{ auth()->user()->id }}">
                         <button class="btn btn-success">Simpan Transaksi</button>
                     </div>
                 </div>

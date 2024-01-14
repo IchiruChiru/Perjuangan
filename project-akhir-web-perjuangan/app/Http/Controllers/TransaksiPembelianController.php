@@ -58,7 +58,7 @@ class TransaksiPembelianController extends Controller
             $no_daftar++;
         }
     
-        return print($request);
+        return redirect()->back();
     }
     
 }

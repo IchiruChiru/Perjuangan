@@ -186,6 +186,7 @@ Route::middleware(['auth'])->group(function () {
            // Transaksi
            Route::get('/transaksipembelian', [TransaksiPembelianController::class, 'index']);
            Route::get('/transaksipenjualan', [TransaksiPenjualanController::class, 'index']);
+           Route::post('/transaksipembelian/store', [TransaksiPembelianController::class, 'store']);
 
     });
 });

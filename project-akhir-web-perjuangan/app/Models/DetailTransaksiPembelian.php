@@ -19,5 +19,5 @@ class DetailTransaksiPembelian extends Model
          return $this->belongsTo('App\Models\TransaksiPembelian');
      }
 
-     protected $fillable=['Barang_id', 'TransaksiPembelian_id','jumlah_id'];
+     protected $fillable=['Barang_id', 'Transaksi_Pembelian_id','jumlah_beli'];
 }

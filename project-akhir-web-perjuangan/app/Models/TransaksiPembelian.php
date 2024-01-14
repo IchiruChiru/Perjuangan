@@ -9,6 +9,7 @@ class TransaksiPembelian extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['Supplier_id','sub_total','tgl_transaksi','id'];
     public function suppliers(){
         return $this->belongsTo(Supplier::class, 'Supplier_id','id');
     }

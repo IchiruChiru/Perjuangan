@@ -5,7 +5,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="" method="post">
+            <form action="{{ url('/transaksipembelian/store') }}" method="post">
                 @csrf
                 <div class="row">
                     <div class="col-md-6 col-12">
@@ -16,6 +16,12 @@
                                         data-harga_barang="{{ $barang->harga_barang }}" data-id="{{ $barang->id }}">
                                         {{ $barang->nama_barang }} (
                                         Rp.<?= number_format($barang->harga_barang) ?> )</option>
+                                @endforeach
+                            </select>
+                            <select class="form-control" id="id_supplier">
+                                @foreach ($suppliers as $supplier)
+                                <option value="{{ $supplier->id }}" data-nama_supplier="{{ $supplier->nama_supplier }}">
+                                    {{ $supplier->nama_supplier }} </option>
                                 @endforeach
                             </select>
                         </div>
@@ -56,6 +62,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <input type="hidden" name="total_harga_barang" value="0">
+                        <input type="hidden" name="Supplier_id" id="Supplier_id" value="1">
                         <button class="btn btn-success">Simpan Transaksi</button>
                     </div>
                 </div>
@@ -74,24 +81,30 @@
         var totalharga_barang = 0;
         var quantity = 0;
         var listItem = [];
-
         function tambahItem() {
-            updateTotalharga_barang(parseInt($('#id').find(':selected').data('harga_barang')))
-            var item = listItem.filter(el => el.id === $('#id').find(':selected').data('id'));
-            if (item.length > 0) {
-                item[0].quantity += 1
-            } else {
-                var item = {
-                    id: $('#id').find(':selected').data('id'),
-                    nama_barang: $('#id').find(':selected').data('nama_barang'),
-                    harga_barang: $('#id').find(':selected').data('harga_barang'),
-                    quantity: 1
-                }
-                listItem.push(item)
-            }
-            updateQuantity(1)
-            updateTable()
+    updateTotalharga_barang(parseInt($('#id').find(':selected').data('harga_barang')))
+
+    // Set the Supplier_id value based on the selected supplier
+    var selectedSupplierId = $('#id_supplier').find(':selected').val();
+    $('#Supplier_id').val(selectedSupplierId);
+
+    var item = listItem.filter(el => el.id === $('#id').find(':selected').data('id'));
+    if (item.length > 0) {
+        item[0].quantity += 1
+    } else {
+        var item = {
+            id: $('#id').find(':selected').data('id'),
+            nama_barang: $('#id').find(':selected').data('nama_barang'),
+            harga_barang: $('#id').find(':selected').data('harga_barang'),
+            quantity: 1
         }
+        listItem.push(item)
+    }
+    updateQuantity(1)
+    updateTable()
+}
+
+
 
         function deleteItem(index) {
             var item = listItem[index]

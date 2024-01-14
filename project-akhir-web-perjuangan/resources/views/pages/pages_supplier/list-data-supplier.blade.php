@@ -1,6 +1,5 @@
 @extends('layout.master')
 <link rel="stylesheet" href="css/tambah-data.css">
-@section('title','list Data Supplier')
 @section('css','css/listdata.css')
 @section('content')
 

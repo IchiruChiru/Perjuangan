@@ -1,7 +1,5 @@
 @extends('layout.master')
 
-@section('title','transaksi Penjualan')
-
 @section('content')
     <div class="card">
         <div class="card-body">

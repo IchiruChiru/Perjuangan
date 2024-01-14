@@ -1,6 +1,5 @@
 @extends('layout.master')
 <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
-@section('title','Dashboard')
 
 @section('content')
 
@@ -23,11 +22,12 @@
             <li>
                 <i class='bx bxs-group fa-solid fa-cart-shopping' ></i>
                 <span class="text">
-                    <h3>2834</h3>
+                    <h3>{{ $jumlahTransaksiPenjualan }}</h3>
                     <p>Jumlah Transaksi Penjualan</p>
                 </span>
             </li>
        
+            @if(Auth::user()->level=== 'admin')
             <li>
                 <i class='bx fa-solid fa-money-bill' ></i>
                 <span class="text">
@@ -38,103 +38,69 @@
             <li>
                 <i class='bx fa-solid fa-money-bill' ></i>
                 <span class="text">
-                    <h3>Rp {{  number_format($grandTotalSeluruhTransaksiPembelian, 0, ',', '.')}}</h3>
-                    <p>Total Profit Penjualan Barang </p>
+                    <h3>Rp {{  number_format($grandTotalSeluruhTransaksiPenjualan, 0, ',', '.')}}</h3>
+                    <p>Total Omzet Penjualan Barang </p>
                 </span>
             </li>
+            <li>
+                <i class='bx fa-solid fa-money-bill' ></i>
+                <span class="text">
+                    <h3>{{ $jumlahJenisBarang }}</h3>
+                    <p>Jumlah Jenis Barang</p>
+                </span>
+            </li>
+            <li>
+                <i class='bx fa-solid fa-money-bill' ></i>
+                <span class="text">
+                    <h3>{{ $jumlahSupplier }}</h3>
+                    <p>Jumlah Supplier</p>
+                </span>
+            </li>
+            @endif
         </ul>
 
 
         <div class="table-data">
             <div class="order">
                 <div class="head">
-                    <h3>Recent Orders</h3>
+                    <h3>Penjualan Akhir akhir ini</h3>
                     <i class='bx bx-search' ></i>
                     <i class='bx bx-filter' ></i>
                 </div>
                 <table>
                     <thead>
                         <tr>
-                            <th>User</th>
-                            <th>Date Order</th>
-                            <th>Status</th>
+                            <th>No</th>
+                            <th>Tanggal Transaksi</th>
+                            <th>Kasir yang Melayani</th>
+                            <th>Grand total</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @forelse ($transaksiPenjualans as $key => $transaksiPenjualan) 
                         <tr>
-                            <td>
-                                <img src="img/people.png">
-                                <p>John Doe</p>
-                            </td>
-                            <td>01-10-2021</td>
-                            <td><span class="status completed">Completed</span></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="img/people.png">
-                                <p>John Doe</p>
-                            </td>
-                            <td>01-10-2021</td>
-                            <td><span class="status pending">Pending</span></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="img/people.png">
-                                <p>John Doe</p>
-                            </td>
-                            <td>01-10-2021</td>
-                            <td><span class="status process">Process</span></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="img/people.png">
-                                <p>John Doe</p>
-                            </td>
-                            <td>01-10-2021</td>
-                            <td><span class="status pending">Pending</span></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="img/people.png">
-                                <p>John Doe</p>
-                            </td>
-                            <td>01-10-2021</td>
-                            <td><span class="status completed">Completed</span></td>
-                        </tr>
+                            <td>{{ $transaksiPenjualans->firstItem() + $key }}</td>
+                            <td>{{ \Carbon\Carbon::parse($transaksiPenjualan->tgl_transaksi)->locale('id_ID')->isoFormat('D MMMM Y') }}</td>
+                            <td>{{ $transaksiPenjualan->name }}</td>
+                            <td>Rp {{  number_format($transaksiPenjualan->sub_total, 0, ',', '.')}}</td>
+                            <td><button class="button-detail" onclick="lihatDetail('/detaillaporanPenjualan/{{ $transaksiPenjualan->id }}')"><i class="fa-solid fa-circle-info"></i> Lihat Detail</button></td>
+                            @empty
+                            <tr>
+                                <td class="text-center" colspan="7">Tidak ada data yang ditemukan.</td>
+                            </tr>
+                            </tr>
+                            @endforelse
                     </tbody>
                 </table>
-            </div>
-            <div class="todo">
-                <div class="head">
-                    <h3>Todos</h3>
-                    <i class='bx bx-plus' ></i>
-                    <i class='bx bx-filter' ></i>
-                </div>
-                <ul class="todo-list">
-                    <li class="completed">
-                        <p>Todo List</p>
-                        <i class='bx bx-dots-vertical-rounded' ></i>
-                    </li>
-                    <li class="completed">
-                        <p>Todo List</p>
-                        <i class='bx bx-dots-vertical-rounded' ></i>
-                    </li>
-                    <li class="not-completed">
-                        <p>Todo List</p>
-                        <i class='bx bx-dots-vertical-rounded' ></i>
-                    </li>
-                    <li class="completed">
-                        <p>Todo List</p>
-                        <i class='bx bx-dots-vertical-rounded' ></i>
-                    </li>
-                    <li class="not-completed">
-                        <p>Todo List</p>
-                        <i class='bx bx-dots-vertical-rounded' ></i>
-                    </li>
-                </ul>
             </div>
         </div>
     </main>
     <!-- MAIN -->
 </section>
+<script>
+    function lihatDetail(url) {
+        window.location.href = url;
+    }
+</script>
 @endsection

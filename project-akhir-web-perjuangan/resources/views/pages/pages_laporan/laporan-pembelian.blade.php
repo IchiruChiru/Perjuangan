@@ -1,6 +1,5 @@
 @extends('layout.master')
 <link rel="stylesheet" href="css/tambah-data.css">
-@section('title','list Data Laporan Pembelian')
 <link rel="stylesheet" href="css/listdata.css">
 
 @section('content')
@@ -37,7 +36,7 @@
                             <td>{{ $transaksiPembelian->no_telp }}</td>
                             <td>Rp {{  number_format($transaksiPembelian->sub_total, 0, ',', '.')}}</td>
         
-                            <td><button class="button-detail" onclick="hapusData('/detaillaporanPembelian/{{ $transaksiPembelian->id }}')"><i class="fa-solid fa-circle-info"></i> Lihat Detail</button></td>
+                            <td><button class="button-detail" onclick="lihatDetail('/detaillaporanPembelian/{{ $transaksiPembelian->id }}')"><i class="fa-solid fa-circle-info"></i> Lihat Detail</button></td>
 
                             {{-- Modals setelah Button Edit di klik --}}
                             <div class="modal fade" id="modal-edit{{ $transaksiPembelian->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -96,7 +95,7 @@
             </div>
     </div>
     <script>
-        function hapusData(url) {
+        function lihatDetail(url) {
             window.location.href = url;
         }
     </script>

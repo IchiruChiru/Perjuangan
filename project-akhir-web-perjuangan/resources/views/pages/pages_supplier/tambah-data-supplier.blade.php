@@ -1,5 +1,4 @@
 @extends('layout.master')
-@section('title','tambah Data Supplier')
 @section('css','css/tambah-data.css')
 @section('content')
     <div class="card-container">

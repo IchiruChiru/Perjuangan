@@ -1,6 +1,5 @@
 @extends('layout.master')
 <link rel="stylesheet" href="css/tambah-data.css">
-@section('title','profile')
 @section('css','css/listdata.css')
 @section('content')
 
@@ -12,7 +11,7 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                 <h3>Anda Login Sebagai {{Auth::user()->level}}!</h3>
+                 <h3>Anda Login Sebagai {{Auth::user()->level == 'user' ? 'Kasir' : Auth::user()->level}}!</h3>
                 </div>
             </div>
 

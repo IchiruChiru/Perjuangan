@@ -29,8 +29,12 @@ li {
 	--light-green: #caffc6;
 	--green: #38fd3b;
 	--light-yellow: #FFF2C6;
-	--orange: #FD7238;
+	--orange: #fd3838;
 	--light-orange: #FFE0D3;
+	--purple: #9a38fd;
+	--light-purple: #edd3ff;
+	--cyan: #38f0fd;
+	--light-cyan: #d3ffff;
 }
 
 html {
@@ -397,6 +401,14 @@ body {
 #content main .box-info li:nth-child(4) .bx {
 	background: var(--light-green);
 	color: var(--green);
+}
+#content main .box-info li:nth-child(5) .bx {
+	background: var(--light-purple);
+	color: var(--purple);
+}
+#content main .box-info li:nth-child(6) .bx {
+	background: var(--light-cyan);
+	color: var(--cyan);
 }
 
 #content main .box-info li .text h3 {

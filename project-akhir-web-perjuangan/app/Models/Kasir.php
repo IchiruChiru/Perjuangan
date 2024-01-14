@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Kasir extends Model
 {
     use HasFactory;
-    public function transaksiPenjualan(){
-        return $this->hasMany('app\Models\TransaksiPenjualan');
-    }
+    // public function transaksiPenjualan(){
+    //     return $this->hasMany('app\Models\TransaksiPenjualan');
+    // }
 
 }

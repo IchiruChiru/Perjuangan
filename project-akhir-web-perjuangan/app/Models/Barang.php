@@ -10,13 +10,13 @@ class Barang extends Model
 {
     use HasFactory;
 
-    public function DetailTransaksiPembelian()
+    public function detailTransaksiPembelian()
     {
-        return $this->BelongsTo('App\Models\DetailTransaksiPembelian');
+        return $this->hasMany(DetailTransaksiPembelian::class);
     }
     public function DetailTransaksiPenjualan()
     {
-        return $this->BelongsTo('App\Models\DetailTransaksiPenjualan');
+        return $this->hasMany('App\Models\DetailTransaksiPenjualan');
     }
 
     protected $fillable = ['nama_barang','merk_barang','harga_barang','stok','peringatan_stok'];

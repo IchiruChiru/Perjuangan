@@ -24,7 +24,7 @@
                                     <input type="text" name="search" class="form-control float-right"
                                         placeholder="Search" value="{{ $request->get('search') }}" style="width: 70%;">
                                     <div class="input-group-append">
-                                        <button type="submit" class="btn btn-default">
+                                        <button type="submit" class="btn btn-default ">
                                             <i class="fas fa-search"></i>
                                         </button>
                                     </div>
@@ -36,7 +36,7 @@
 
             <table class="table table-striped">
                 <thead>
-                    <tr>
+                    <tr class="header">
                         <td>No</td>
                         <td>Nama Barang</td>
                         <td>Merk Barang</td>
@@ -44,7 +44,7 @@
                         <td>Stok</td>
                         <td>Ketersediaan</td>
                         @if(Auth::user()->level=== 'admin')
-                        <td colspan="2">Aksi</td>
+                        <td colspan="2" class="aksi">Aksi</td>
                         @endif
                     </tr>
                 </thead>
@@ -56,7 +56,7 @@
                             <td>{{ $barangs->firstItem()+ $key }}</td>
                             <td>{{ $barang->nama_barang }}</td>
                             <td>{{ $barang->merk_barang }}</td>
-                            <td>{{ "Rp" . $barang->harga_barang }}</td>
+                            <td>{{ "Rp " . number_format($barang->harga_barang, 0, ',', '.') }}</td>
                             <td>{{ $barang->stok }}</td>
                             @if ($barang->stok == 0)
                             <td><span class="status habis">Habis</span></td>
@@ -90,13 +90,13 @@
                                                     <p class="text">Merk Barang</p>
                                                     <input class="input" type="text" value="{{ $barang->merk_barang }}" name="merk_barang">
                                                     <p class="text">Harga Barang</p>
-                                                    <input class="input" type="text" value="{{ $barang->harga_barang }}" name="harga_barang">
+                                                    <input class="input" type="text" value="{{ number_format($barang->harga_barang, 0, ',', '.')}}" name="harga_barang">
                                                     <p class="text">Ubah Stok Barang</p>
                                                     <input class="input" type="text" value="{{ $barang->stok }}"name="stok">
                                                     <p class="text">Peringatan Stok Barang</p>
                                                     <input class="input" type="text" value="{{ $barang->peringatan_stok }}" name="peringatan_stok">
                                                     <button class="btn-tambah" type="submit">
-                                                        Tambah Data Barang
+                                                        Simpan Data Barang
                                                     </button>
                                             </form>
                                         </div>

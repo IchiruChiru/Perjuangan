@@ -9,8 +9,16 @@ use App\Http\Controllers\TransaksiPembelianController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DetailTransaksiPembelianController;
+use App\Http\Controllers\DetailTransaksiPenjualanController;
+use App\Http\Controllers\LaporanPembelianController;
+use App\Http\Controllers\LaporanPenjualanController;
+use App\Http\Controllers\DetailLaporanPenjualanController;
+use App\Http\Controllers\DetailLaporanPembelianController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DashboardController;
+use App\Models\TransaksiPembelian;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 
 /*
@@ -117,6 +125,13 @@ Route::get('/', function () {
     return view('pages.pages_lainnya.index');
 });
 
+// routes/web.php
+
+use App\Http\Controllers\YourController;
+
+
+
+
 // Auth routes
 Route::get('register', [AuthController::class, 'register'])->name('register');
 Route::post('proses_register', [AuthController::class, 'proses_register'])->name('proses_register');
@@ -129,11 +144,8 @@ Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 // Protected routes for both 'admin' and 'user'
 Route::middleware(['auth'])->group(function () {
     // Dashboard
-    Route::get('/dashboard', function () {
-        return view('pages.pages_lainnya.dashboard');
-    });
-
-
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::post('/update-content', [YourController::class, 'updateContent']);
 
     // Common routes for both 'admin' and 'user'
     Route::group(['middleware' => 'auth'], function () {
@@ -147,8 +159,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/databarang/update/{id}', [BarangController::class, 'update']);
         Route::get('/databarang/hapus/{id}', [BarangController::class, 'delete']);
 
-
-
+        // Route::get('/detail', [DetailTransaksiPembelianController::class, 'baru']);
+      
         // Supplier
         Route::get('/listdatasupplier', [SupplierController::class, 'index']);
         Route::post('/datasupplier/store', [SupplierController::class, 'store']);
@@ -160,8 +172,10 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['middleware' => ['cek_login:admin']], function () {
         Route::resource('admin', AdminController::class);
             // Laporan keuangan
-    Route::get('/laporanPembelian', [Controller::class, 'laporanPembelian']);
-    Route::get('/laporanPenjualan', [Controller::class, 'laporanPenjualan']);
+    Route::get('/laporanPembelian', [LaporanPembelianController::class, 'index'])->name('detailpembelian');
+    Route::get('/laporanPenjualan', [LaporanPenjualanController::class, 'index']);
+    Route::get('/detaillaporanPembelian/{id}', [DetailLaporanPembelianController::class, 'index']);
+    Route::get('/detaillaporanPenjualan/{id}', [DetailLaporanPembelianController::class, 'index']);
     Route::get('/tambahdatabarang', [BarangController::class, 'create']);
     Route::get('/tambahdatasupplier', [SupplierController::class, 'create']);
     });
@@ -170,8 +184,10 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['middleware' => ['cek_login:user']], function () {
         Route::resource('user', UserController::class);
            // Transaksi
-           Route::get('/transaksipembelian', [TransaksiPembelianController::class, 'index']);
-           Route::get('/transaksipenjualan', [TransaksiPenjualanController::class, 'index']);
+        Route::get('/transaksipembelian', [TransaksiPembelianController::class, 'index']);
+        Route::get('/transaksipenjualan', [TransaksiPenjualanController::class, 'index']);
+        Route::post('/transaksipenjualan/store', [TransaksiPenjualanController::class, 'store']);
+        Route::post('/transaksipembelian/store', [TransaksiPembelianController::class, 'store']);
 
     });
 });

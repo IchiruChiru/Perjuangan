@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('transaksi_penjualans', function (Blueprint $table) {
             $table->id()->primarykey();
-            $table->foreignid('Kasir_id')->constrained();
+            $table->foreignid('User_id')->constrained();
             $table->integer('sub_total')->nullable(false);
             $table->date('tgl_transaksi')->nullable(false);
             $table->timestamps();

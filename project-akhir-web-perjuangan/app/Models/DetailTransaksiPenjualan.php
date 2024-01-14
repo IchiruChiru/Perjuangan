@@ -11,11 +11,12 @@ class DetailTransaksiPenjualan extends Model
 
     public function Barang()
     {
-        return $this->hasMany('App\Models\Barang');
+        return $this->belongTo('App\Models\Barang');
     }
 
-    // public function TransaksiPenjualan()
-    // {
-    //     return $this->belongsTo('App\Models\TransaksiPenjualan');
-    // }
+    public function TransaksiPenjualan()
+    {
+        return $this->belongsTo('App\Models\TransaksiPenjualan');
+    }
+    protected $fillable=['Barang_id', 'Transaksi_Penjualan_id','jumlah_beli'];
 }

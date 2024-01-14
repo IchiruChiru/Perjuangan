@@ -6,7 +6,7 @@ use App\Models\Supplier;
 use App\Models\TransaksiPembelian;
 use Illuminate\Http\Request;
 
-class DetailTransaksiPembelianController extends Controller
+class DetailLaporanPembelianController extends Controller
 {
   public function index($id)
   {

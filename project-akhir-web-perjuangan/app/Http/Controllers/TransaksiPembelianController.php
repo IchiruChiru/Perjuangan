@@ -1,27 +1,31 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Supplier;
-use App\Models\TransaksiPembelian;
-use App\Models\DetailTransaksiPembelian; // Menambahkan model DetailTransaksiPembelian
+use App\Models\Barang;
 use Illuminate\Http\Request;
 
 class TransaksiPembelianController extends Controller
 {
-    public function index()
+    public function index() 
     {
+        $barangs = Barang::all();
+        return view('pages.pages_transaksi.transaksi-pembelian',['barangs' => $barangs]);
+    }
 
-        // $transaksiPembelians = DetailTransaksiPembelian::join('barangs','detail_transaksi_pembelians.Barang_id','=','barangs.id')
-        //     ->select('detail_transaksi_pembelians.*','barangs.*')
-        //     ->get();
-        $transaksiPembelians = TransaksiPembelian::join('suppliers', 'transaksi_pembelians.supplier_id', '=', 'suppliers.id')
-        ->select('transaksi_pembelians.*', 'suppliers.nama_supplier','suppliers.no_telp')->orderBy('transaksi_pembelians.tgl_transaksi','desc')->paginate(10);
+    public $query;
+    public $products;
 
-        // Menambahkan join untuk mengakses data detail pembelian
-        
-        // $transaksiPembelians->load('detailTransaksiPembelian.barang'); // Menyesuaikan relasi dengan 'detailTransaksiPembelian.barang'
+    public function render()
+    {
+        $this->products = Barang::where('nama_barang', 'like', '%' . $this->query . '%')
+            ->get();
 
-        return view('pages.pages_laporan.laporan-pembelian', ['transaksiPembelians' => $transaksiPembelians]);
+            return view('pages.pages_transaksi.search-barang');
+    }
+
+    public function selectProduct($nama, $merk, $harga, $stok)
+    {
+        // Kirim event untuk memberi tahu komponen lain bahwa produk telah dipilih
+        $this->emit('productSelected', $nama, $merk, $harga, $stok);
     }
 }

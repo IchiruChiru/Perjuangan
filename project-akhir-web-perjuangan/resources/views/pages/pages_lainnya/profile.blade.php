@@ -24,11 +24,13 @@
                             <tr>
                                 <td>Nama Akun</td>
                                 <td>Email</td>
+                                <td>Nomor Telephone</td>
                             </tr>
                         </thead>
                         <tbody>
                             <td>{{Auth::user()->name}}</td>
                             <td>{{Auth::user()->email}}</td>
+                            <td>{{Auth::user()->no_telp}}</td>
                         </tbody>
                     </table>
                 </div>

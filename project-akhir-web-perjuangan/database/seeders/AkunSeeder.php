@@ -15,9 +15,9 @@ class AkunSeeder extends Seeder
     public function run(): void
     {
         $user = [
-            ['name' => 'AkunAdmin', 'email' => 'admin@gmail.com', 'level' => 'admin', 'password' =>'123456'],
-            ['name' => 'AkunUser1', 'email' => 'user1@gmail.com', 'level' => 'user', 'password' => '123456'],
-            ['name' => 'AkunUser2', 'email' => 'user2@gmail.com', 'level' => 'user', 'password' => '123456'],
+            ['name' => 'AkunAdmin', 'email' => 'admin@gmail.com', 'level' => 'admin', 'password' => '123456', 'no_telp' => '085600000001'],
+            ['name' => 'AkunUser1', 'email' => 'user1@gmail.com', 'level' => 'user', 'password' => '123456', 'no_telp' => '085600000002'],
+            ['name' => 'AkunUser2', 'email' => 'user2@gmail.com', 'level' => 'user', 'password' => '123456', 'no_telp' => '085600000003'],
         ];
         foreach ($user as $key => $value) {
             User::create($value);

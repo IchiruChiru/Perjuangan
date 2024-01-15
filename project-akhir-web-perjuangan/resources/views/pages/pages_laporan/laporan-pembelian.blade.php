@@ -27,7 +27,7 @@
                     @php
                         $no = 1;
                     @endphp
-                    @forelse ($transaksiPembelians as $key => $transaksiPembelian) 
+                    @forelse ($transaksiPembelians as $key => $transaksiPembelian)
                         <tr>
                             <td>{{ $transaksiPembelians->firstItem() + $key }}</td>
                             <td>{{ $transaksiPembelian->id }}</td>
@@ -35,7 +35,7 @@
                             <td>{{ $transaksiPembelian->nama_supplier }}</td>
                             <td>{{ $transaksiPembelian->no_telp }}</td>
                             <td>Rp {{  number_format($transaksiPembelian->sub_total, 0, ',', '.')}}</td>
-        
+
                             <td><button class="button-detail" onclick="lihatDetail('/detaillaporanPembelian/{{ $transaksiPembelian->id }}')"><i class="fa-solid fa-circle-info"></i> Lihat Detail</button></td>
 
                             {{-- Modals setelah Button Edit di klik --}}
@@ -77,7 +77,7 @@
                                 </tr>
                                 </tr>
                                 @endforelse
-                
+
                 </tbody>
             </table>
 

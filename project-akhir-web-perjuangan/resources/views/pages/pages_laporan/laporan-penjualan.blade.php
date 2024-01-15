@@ -7,7 +7,7 @@
     <div class="details">
         <div class="format-table">
             <div class="cardHeader">
-                <h2>List Data Laporan Pembelian</h2>
+                <h2>List Data Laporan Penjualan</h2>
             </div>
 
             <table class="table table-striped">
@@ -27,7 +27,7 @@
                     @php
                         $no = 1;
                     @endphp
-                    @forelse ($transaksiPenjualans as $key => $transaksiPenjualan) 
+                    @forelse ($transaksiPenjualans as $key => $transaksiPenjualan)
                         <tr>
                             <td>{{ $transaksiPenjualans->firstItem() + $key }}</td>
                             <td>{{ $transaksiPenjualan->id }}</td>
@@ -35,7 +35,7 @@
                             <td>{{ $transaksiPenjualan->name }}</td>
                             <td>{{ $transaksiPenjualan->no_telp }}</td>
                             <td>Rp {{  number_format($transaksiPenjualan->sub_total, 0, ',', '.')}}</td>
-        
+
                             <td><button class="button-detail" onclick="lihatDetail('/detaillaporanPenjualan/{{ $transaksiPenjualan->id }}')"><i class="fa-solid fa-circle-info"></i> Lihat Detail</button></td>
 
                             {{-- Modals setelah Button Edit di klik --}}
@@ -77,7 +77,7 @@
                                 </tr>
                                 </tr>
                                 @endforelse
-                
+
                 </tbody>
             </table>
 

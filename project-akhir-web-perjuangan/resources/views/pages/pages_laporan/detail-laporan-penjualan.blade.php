@@ -29,7 +29,7 @@
                     @php
                         $no = 1;
                     @endphp
-                @forelse ($transaksiPenjualans as $key => $transaksiPenjualan) 
+                @forelse ($transaksiPenjualans as $key => $transaksiPenjualan)
                     <tr>
                         <td>{{ $transaksiPenjualans->firstItem() + $key }}</td>
                         <td>{{ $transaksiPenjualan->Kasir_id }}</td>
@@ -79,15 +79,15 @@
             </table>
 
             <div class="url-paginasi">
-                {{ $transaksiPembelians->links() }}
+                {{ $transaksiPenjualans->links() }}
             </div>
             <div class="informasi-paginasi">
                 <span>Menampilkan</span>
-                {{ $transaksiPembelians->firstItem() }}
+                {{ $transaksiPenjualans->firstItem() }}
                 <span> - </span>
-                {{ $transaksiPembelians->lastItem() }}
+                {{ $transaksiPenjualans->lastItem() }}
                 <span>dari</span>
-                {{ $transaksiPembelians->total() }}
+                {{ $transaksiPenjualans->total() }}
                 <span>data</span>
             </div>
     </div>

@@ -29,7 +29,7 @@
                     @php
                         $no = 1;
                     @endphp
-                   
+
                         <tr>
                             {{-- <td>{{ $no }}</td>
                             <td>{{ $transaksiPembelian->tgl_transaksi }}</td>

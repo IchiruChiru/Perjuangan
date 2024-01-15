@@ -55,17 +55,17 @@ class TransaksiPenjualanSeeder extends Seeder
                 'tgl_transaksi' => '2024-01-03'
             ],
             [
-                'User_id' => '1',
+                'User_id' => '2',
                 'sub_total' => '32000',
                 'tgl_transaksi' => '2024-01-03'
             ],
             [
-                'User_id' => '1',
+                'User_id' => '3',
                 'sub_total' => '23000',
                 'tgl_transaksi' => '2024-01-03'
             ],
             [
-                'User_id' => '1',
+                'User_id' => '2',
                 'sub_total' => '13000',
                 'tgl_transaksi' => '2024-01-03'
             ],

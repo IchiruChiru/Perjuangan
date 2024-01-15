@@ -3,14 +3,27 @@
 @section('css','css/listdata.css')
 @section('content')
 
+@php
+   $grandTotal = 0; 
+@endphp
+@foreach($transaksiPenjualans as $transaksiPenjualan)
+    @php
+        $grandTotal += $transaksiPenjualan->harga_barang*$transaksiPenjualan->jumlah_beli;
+    @endphp
+@endforeach
+
     <div class="details">
         <div class="format-table">
             <div class="cardHeader">
-                <h2>List Data Laporan Penjualan</h2>
-                <a class="btn" data-toggle="modal" data-target="#modal-inputLaporan Penjualan">
-                    <i class="fa-solid fa-plus"></i>
-                    Tambah Data Laporan Penjualan
-                </a>
+                <h2> Detail Laporan Pembelian</h2>
+            </div>
+            <div class="cardHeader mt-0">
+                <h3>Tanggal Transaksi :  {{ \Carbon\Carbon::parse($transaksiPenjualans[0]->tgl_transaksi)->locale('id_ID')->isoFormat('D MMMM Y') }}</h3>
+                <h3>Kasir : {{ $transaksiPenjualans[0]->name }}</h3>
+            </div>
+            <div class="cardHeader mt-0">
+                <h3>Id Transaksi : {{ $transaksiPenjualans[0]->Transaksi_Penjualan_id }}</h3>
+                <h3>GrandTotal : Rp {{  number_format($grandTotal, 0, ',', '.'); }}</h3>
             </div>
 
             <table>

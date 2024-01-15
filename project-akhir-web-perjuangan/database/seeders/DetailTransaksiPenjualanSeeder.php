@@ -13,7 +13,7 @@ class DetailTransaksiPenjualanSeeder extends Seeder
      */
     public function run(): void
     {
-        $data =   [  
+        $data =   [
             [
                 'Barang_id'=>'1',
                 'Transaksi_Penjualan_id'=>'1',
@@ -28,9 +28,43 @@ class DetailTransaksiPenjualanSeeder extends Seeder
                 'Barang_id'=>'2',
                 'Transaksi_Penjualan_id'=>'3',
                 'jumlah_beli'=>'5'
-            ]
+            ],
+            [
+                'Barang_id'=>'5',
+                'Transaksi_Penjualan_id'=>'4',
+                'jumlah_beli'=>'10'
+            ],
+            [
+                'Barang_id'=>'4',
+                'Transaksi_Penjualan_id'=>'5',
+                'jumlah_beli'=>'3'
+            ],
+            [
+                'Barang_id'=>'1',
+                'Transaksi_Penjualan_id'=>'6',
+                'jumlah_beli'=>'2'
+            ],
+            [
+                'Barang_id'=>'4',
+                'Transaksi_Penjualan_id'=>'7',
+                'jumlah_beli'=>'3'
+            ],[
+                'Barang_id'=>'1',
+                'Transaksi_Penjualan_id'=>'8',
+                'jumlah_beli'=>'2'
+            ],
+            [
+                'Barang_id'=>'4',
+                'Transaksi_Penjualan_id'=>'9',
+                'jumlah_beli'=>'13'
+            ],
+            [
+                'Barang_id'=>'4',
+                'Transaksi_Penjualan_id'=>'10',
+                'jumlah_beli'=>'23'
+            ],
         ];
-    
+
             // untuk mengacak urutan data
             shuffle($data);
             // Masukkan data ke dalam tabel DetailTransaksiPenjualan

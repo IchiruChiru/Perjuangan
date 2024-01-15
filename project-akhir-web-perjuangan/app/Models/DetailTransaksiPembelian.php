@@ -14,10 +14,10 @@ class DetailTransaksiPembelian extends Model
         return $this->belongsTo(Barang::class);
     }
 
-     public function TransaksiPembelian()
-     {
-         return $this->belongsTo('App\Models\TransaksiPembelian');
-     }
+    public function TransaksiPembelian()
+    {
+        return $this->belongsTo('App\Models\TransaksiPembelian');
+    }
 
-     protected $fillable=['Barang_id', 'Transaksi_Pembelian_id','jumlah_beli'];
+    protected $fillable=['Barang_id', 'Transaksi_Pembelian_id','jumlah_beli'];
 }

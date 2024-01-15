@@ -9,13 +9,13 @@
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
-    background-color:#E4E9F7;
+    background-color: rgb(243,243,244);
     background-repeat: no-repeat;
     background-position: center bottom;
     background-size: cover;
 }
 aside {
-    background-color:#FFF;
+    background-color:rgb(32,44,55);
 }
 h3 {
     font-size: 1.2375rem;
@@ -23,7 +23,8 @@ h3 {
 }
 
 h3, p {
-    color: #707070;
+    color: rgb(16, 104, 86);
+    border-radius: 40;
 }
 
 a {
@@ -70,7 +71,7 @@ li {
 }
 
 .sidebar-logo a {
-    color: #707070;
+    color: rgb(193,205,224);
     font-size: 1.25rem;
     font-weight: 600;
 }
@@ -80,14 +81,14 @@ li {
 }
 
 .sidebar-header {
-    color: #707070;
+    color: rgb(238, 245, 255);
     font-size: .75rem;
     padding: 1.5rem 1.5rem .375rem;
 }
 
 a.sidebar-link {
     padding: .625rem 1.625rem;
-    color: #707070;
+    color: rgb(238, 245, 255);
     position: relative;
     display: block;
     font-size: 1rem;
@@ -113,14 +114,15 @@ a.sidebar-link {
 
 
 li.sidebar-item:hover::before {
-    background-color: #6d7bff;
+    background-color:rgb(127, 199, 217);
     border-radius: 10px;
 }
 
 .sidebar-link:hover {
-    background-color: #6d7bff;
+    background-color: rgb(26,179,148);
     border-radius: 10px;
     color: #ffffff;
+    font-weight: 800;
 }
 
 .content {
@@ -136,14 +138,14 @@ li.sidebar-item:hover::before {
 }
 
 .detail-dropdown {
-    background-color:  #e6e6e6;
+    background-color:  rgb(47,64,80);
     margin: 10px;
     border-radius: 10px;
 }
 
 .detail-link:hover {
-    background-color:  #e6e6e6;
-    color: rgb(70, 69, 69);
+    background-color:  rgb(47,64,80);
+    font-weight: 900;
 }
 
 

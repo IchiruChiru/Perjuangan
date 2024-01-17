@@ -46,7 +46,11 @@ class TransaksiPembelianController extends Controller
         $no_daftar = 0;
         foreach ($request->get('id') as $id) {
             $barang = Barang::findOrFail($id);
+            $barang->fill([
+                'stok' => $barang->stok + $request->get('quantity')[$no_daftar],
+            ]);
     
+            $barang->save();
             $transaksi_item = new DetailTransaksiPembelian();
             $transaksi_item->fill([
                 'Transaksi_Pembelian_id' => $transaksi->id,

@@ -171,4 +171,11 @@
             emptyTable()
         })
     </script>
+
+@include('layout.alert',
+[   'is_session_pesan_exist'=>Session::has('pesan'),
+    'session_pesan'=>Session::get('pesan'),
+    'namaTable'=>'transaksiPembelians'
+]),
+
 @endsection

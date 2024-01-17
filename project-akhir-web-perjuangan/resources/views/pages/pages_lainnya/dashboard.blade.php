@@ -43,14 +43,14 @@
                 </span>
             </li>
             <li>
-                <i class='bx fa-solid fa-money-bill' ></i>
+                <i class='bx fa-solid fa-solid fa-boxes-stacked' ></i>
                 <span class="text">
                     <h3>{{ $jumlahJenisBarang }}</h3>
                     <p>Jumlah Jenis Barang</p>
                 </span>
             </li>
             <li>
-                <i class='bx fa-solid fa-money-bill' ></i>
+                <i class='bx fa-solid fa-solid fa-industry' ></i>
                 <span class="text">
                     <h3>{{ $jumlahSupplier }}</h3>
                     <p>Jumlah Supplier</p>
@@ -74,7 +74,9 @@
                             <th>Tanggal Transaksi</th>
                             <th>Kasir yang Melayani</th>
                             <th>Grand total</th>
+                            @if(Auth::user()->level=== 'admin')
                             <th>Aksi</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -84,7 +86,9 @@
                             <td>{{ \Carbon\Carbon::parse($transaksiPenjualan->tgl_transaksi)->locale('id_ID')->isoFormat('D MMMM Y') }}</td>
                             <td>{{ $transaksiPenjualan->name }}</td>
                             <td>Rp {{  number_format($transaksiPenjualan->sub_total, 0, ',', '.')}}</td>
+                            @if(Auth::user()->level=== 'admin')
                             <td><button class="button-detail" onclick="lihatDetail('/detaillaporanPenjualan/{{ $transaksiPenjualan->id }}')"><i class="fa-solid fa-circle-info"></i> Lihat Detail</button></td>
+                            @endif
                             @empty
                             <tr>
                                 <td class="text-center" colspan="7">Tidak ada data yang ditemukan.</td>

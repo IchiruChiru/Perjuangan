@@ -4,7 +4,7 @@
 @section('content')
 
 @php
-   $grandTotal = 0; 
+   $grandTotal = 0;
 @endphp
 @foreach($transaksiPenjualans as $transaksiPenjualan)
     @php
@@ -15,7 +15,7 @@
     <div class="details">
         <div class="format-table">
             <div class="cardHeader">
-                <h2> Detail Laporan Pembelian</h2>
+                <h2> Detail Laporan Penjualan</h2>
             </div>
             <div class="cardHeader mt-0">
                 <h3>Tanggal Transaksi :  {{ \Carbon\Carbon::parse($transaksiPenjualans[0]->tgl_transaksi)->locale('id_ID')->isoFormat('D MMMM Y') }}</h3>

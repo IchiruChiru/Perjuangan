@@ -39,11 +39,25 @@ class TransaksiPenjualanController extends Controller
             'User_id' => $request->User_id,
             'tgl_transaksi' => now(),
         ]);
-        $transaksi->save();
     
         $no_daftar = 0;
+        //Cek apakah stok barang cukup atau tidak
         foreach ($request->get('id') as $id) {
             $barang = Barang::findOrFail($id);
+            if($barang->stok < $request->get('quantity')[$no_daftar]) {
+                return redirect()->back()->with('pesan_error','Stok ' . $barang->nama_barang . ' hanya tersisa ' . $barang->stok );
+            }
+        }
+
+        $transaksi->save();
+        foreach ($request->get('id') as $id) {
+
+            $barang = Barang::findOrFail($id);
+            $barang->fill([
+                'stok' => $barang->stok - $request->get('quantity')[$no_daftar],
+            ]);
+
+            $barang->save();
     
             $transaksi_item = new DetailTransaksiPenjualan();
             $transaksi_item->fill([
@@ -56,7 +70,7 @@ class TransaksiPenjualanController extends Controller
             $no_daftar++;
         }
     
-        return redirect()->back();
+        return redirect()->back()->with('pesan','Transaksi Pembelian Berhasil!!');
     }
     
 }

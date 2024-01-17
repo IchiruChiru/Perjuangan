@@ -74,6 +74,15 @@
         </div>
     </div>
 </div>
+
+@include('layout.alert',
+[   'is_session_pesan_exist'=>Session::has('pesan'),
+    'session_pesan'=>Session::get('pesan'),
+    'is_session_pesan_error_exist'=>Session::has('pesan_error'),
+    'session_pesan_error'=>Session::get('pesan_error'),
+    'namaTable'=>'transaksiPenjualans'
+]),
+
     <script>
         // Fungsi formatRupiah untuk memformat angka ke dalam format mata uang Rupiah
         function formatRupiah(angka) {

@@ -8,6 +8,7 @@ class LaporanPenjualanController extends Controller
 {
     public function index()
     {
+
         $transaksiPenjualans = TransaksiPenjualan::join('users', 'transaksi_penjualans.User_id', '=', 'users.id')
         ->select('transaksi_penjualans.*', 'users.name','users.no_telp')->orderBy('transaksi_penjualans.tgl_transaksi','desc')->paginate(10);
 

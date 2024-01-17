@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Supplier;
+use App\Models\TransaksiPembelian;
 use Illuminate\Http\Request;
 
 
@@ -45,9 +46,20 @@ class SupplierController extends Controller
     public function delete($id)
     {
         $supplier = Supplier::find($id);
-        $supplier->delete();
-        return back()->with('pesan','Data Berhasil Dihapus!!');
-        
+
+        $suppliers_from__pembelian = TransaksiPembelian::all();
+
+        foreach($suppliers_from__pembelian as $supplier_from__pembelian )
+        {
+            if($supplier_from__pembelian->Supplier_id == $id)
+            {
+                return back()->with('pesan_error','Supplier tidak dapat dihapus, karena telah ada di Laporan Pembelian!!'); 
+            }
+            else {
+                $supplier->delete();
+                return back()->with('pesan','Data Berhasil Dihapus!!');
+            }
+        }
     }
 
     public function update($id, Request $request)

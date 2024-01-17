@@ -8,6 +8,12 @@
         </script>
         @else
         @endif
+        @if ($is_session_pesan_error_exist ?? false)
+        <script>
+            swal( "Gagal!!!" ,  "{{ $session_pesan_error }}" ,  "error" );
+        </script>
+        @else
+        @endif
     
         <script type="text/javascript">
             function konfirmasi(event,$id)
